@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<script src={% static "js/jquery-1.11.3.min.js"%}></script>
+<script  src={% static "js/bootstrap.min.js" %}></script>
+<link rel="stylesheet" href={% static "css/admin.css" %}>
+<link rel="stylesheet" href={% static "css/footer.css" %}>
+<link rel="stylesheet" href={% static "css/header-search.css" %}>
+<link rel="stylesheet" href={% static "css/header-login-signup.css" %}>
+<link rel="stylesheet" href={% static "css/header-user-dropdown.css" %}>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block body %}
+    <style>
+        body { background: #808080; }
+    </style>
+    <div class="container">
+        <section style="padding-top: 100px;;padding-bottom: 30%">
+            <div class="panel panel-default farsi-font" style="font-size: 18px">
+                <div class="panel-heading">دسته ها</div>
+                {% for type in types %}
+                    <div class="panel-body">
+                        <a href="/my-admin/SubTypes/{{ type.type }}/"><button class="btn btn-primary">{{ type.type }}</button></a>
+                        <div class="pull-left"><a href="/my-admin/deleteTypes/{{ type.name }}/"><input class="btn btn-danger" value="Delete"></a> </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xs-4">
+                <div class="container fieldwrapper" id="wrapper">
+                    <div class="dropdown farsi-font">
+                        <button class="btn btn-lg btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            ویرایش زیر دسته ها
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            {% for type in types %}
+                                <li><a href="/my-admin/SubTypes/{{ type.name }}/">{{ type.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <br />
+                    <h3 class="farsi-font"><button class="btn btn-lg btn-default" disabled>اضافه کردن دسته و زیر دسته </button> </h3>
+                    <form action="/my-admin/addTypes/" method="post">{% csrf_token %}
+                        <div>
+                            <button class="btn btn-success adder">+</button>
+                            <input type="submit" value="submit" class="btn btn-success">
+                        </div>
+                        <div id="item"><input type="text" name="0" placeholder="Type"></div>
+                    </form>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        var max_fields      = 100; //maximum input boxes allowed
+                        var wrapper         = $(".fieldwrapper"); //Fields wrapper
+                        var add_button      = $(".adder"); //Add button ID
+
+                        var x = -1; //initlal text box count
+                        $(add_button).click(function(e){ //on add input button click
+                            e.preventDefault();
+                            if(x < max_fields){ //max input box allowed
+                                x++; //text box increment
+                                $("#item").append('<div>SubType'+x+'<input type="text" name='+'"input'+x+'"/><a href="#" class="btn btn-danger remove_field">x</a></div>'); //add input box
+                            }
+                        });
+
+                        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                            e.preventDefault(); $(this).parent('div').remove(); x--;
+                        })
+                    });
+                </script>
+            </div>
+        </section>
+    </div>
+{% endblock body %}

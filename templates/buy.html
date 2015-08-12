@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block body %}
+    {% load staticfiles %}
+    <link href={% static "css/admin.css"%} rel="stylesheet" />
+    <link href={% static "css/main.css"%} rel="stylesheet" />
+    <style>
+        body { background: #808080; }
+    </style>
+
+    <section style="padding-top: 70px; padding-bottom: 10%;padding-left: 30%;padding-right: 30%;">
+    <div class="thumbnail" style="margin-top: 30px">
+        <form class="form" action="/buy/{{ userid }}/{{ eventid }}/">
+            <div class="form-group-sm">
+                <h4 class="dividing header farsi-font">اطلاعات خرید</h4>
+                <br />
+                <label class="farsi-font">به حساب</label>
+                <input type="text" style="max-width: 200px;" value="RaVi Corp." disabled>
+                <br />
+                <label class="farsi-font">مبلغ خرید</label>
+                <input type="text" style="max-width: 100px;" value="{{ total }}" disabled>
+                <br />
+                <div class="seven wide field">
+                    <label class="farsi-font">شماره کارت</label>
+                    <input style="max-width: 40px;" type="text"  name="card[number]" maxlength="16" > - <input style="max-width: 40px;" type="text" name="card[number]" maxlength="16" > - <input style="max-width: 40px;" type="text" name="card[number]" maxlength="16"> - <input style="max-width: 40px;" type="text" name="card[number]" maxlength="16">
+                </div>
+                <div class="five wide field">
+                    <label class="farsi-font">رمز دوم</label>
+                        <i class="lock icon"></i>
+                        <input type="password" style="max-width: 110px;" name="card[cvc]" maxlength="12" placeholder="Password">
+                </div>
+                <div class="three wide field">
+                    <label> CVV2 </label>
+                    <input type="text" style="max-width: 80px;" style="max-width: 100px;" name="cvv" maxlength="4" placeholder="cvv2">
+                </div>
+
+                <div class="fields">
+                    <div class="six wide field">
+                        <label class="farsi-font">تاریخ انقضا</label>
+                        <br>
+                        <input type="text" style="max-width: 40px;"  name="card[expire-month]" maxlength="2"> / <input class="form-group-sm" type="text"style="max-width: 40px;" name="card[expire-year]" maxlength="4">
+                    </div>
+                    <br />
+                </div>
+                <br />
+                <input class="btn btn-primary btn-md farsi-font" type="submit" value="پرداخت">
+                <input class="btn btn-default btn-md farsi-font" type="submit" value="انصراف">
+            </div>
+        </form>
+    </div>
+    </section>
+
+
+
+
+
+
+
+{% endblock body %}

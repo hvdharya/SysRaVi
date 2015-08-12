@@ -1,0 +1,84 @@
+﻿{% extends "base.html" %}
+
+{% block body %}
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/jquery-ui.css">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/jquery-ui.js"></script>
+    <style>
+        body { background: #808080; }
+    </style>
+
+
+
+    <section style="padding-top: 80px; padding-bottom: 100px; padding-right: 450px;">
+        <div class="row">
+            <form role="form" action="" method="post"> {% csrf_token %}
+                <div class="col-xs-3" style="float: right;">
+                    <div class="form-group">
+                        <label for="event_daste">:دسته رویداد</label>
+                        <input type="text" class="form-control" name="event_daste" value= {{event.type}} disabled>
+                        <label for="event_name">:نام رویداد</label>
+                        <input type="text" class="form-control" name="event_name" value={{ event.name }}>
+                        <label for="genre">زیر دسته رویداد</label>
+                        <input type="text" class="=form-control" name="subtype" value={{ event.sub_type }} disabled>
+                        <label for="event_place">:نام محل برگزاری</label>
+                        <input type="text" class="form-control" name="event_place" placeholder={{ event.place }}>
+                        <label for="event_ticket">:تعداد بلیت</label>
+                        <input type="text" class="form-control" name="event_ticket"placeholder={{ event.ticket_num }}>
+                        <label for="event_price">:قیمت بلیت</label>
+                        <input type="text" class="form-control" name="event_price" placeholder={{ event.ticket_price }}>
+                        <label for="event_datestart">شروع رویداد</label>
+                        <br>
+                        <script>
+                            $(function() {
+                                $( "#datepicker" ).datepicker();
+                            });
+                        </script>
+                        <input type="text" id="datepicker" name="datepicker" placeholder={{ date}}>
+                        <br>
+                        <label for="event_date">تاریخ اتمام خرید بلیت</label>
+                        <br>
+                        <script>
+                            $(function() {
+                                $( "#datepicker1" ).datepicker();
+                            });
+                        </script>
+                        <input type="text" id="datepicker1" name="datepicker1" placeholder={{ deadline}}>
+                    </div>
+                </div>
+                <div class="col-xs-5" style="float: right;">
+                    <div class="form-group">
+                        <label for="event_address">:نشانی محل برگزاری</label>
+                        <input type="text" class="form-control" name="event_addr" placeholder={{ event.address }}>
+                        <br>
+                        <label for="event_info"name="info">:توضیحات</label>
+                        <textarea class="form-control" rows="5" name="info"></textarea>
+
+                        <label for="event_pic" name="pic">درج تصویر</label>
+
+                        <input id="file-4" name="file-4[]" type="file" multiple>
+                        <script>
+                            $(document).on('ready', function() {
+                                // the file input
+                                var $el = $('#file-4'), initPlugin = function() {
+                                    $el.fileinput({
+                                        uploadUrl: '/site/file-upload-single?type=1',
+                                        uploadExtraData: {kvId: '10'},
+                                        dropZoneEnabled: false
+                                    }).off('filepreupload').on('filepreupload', function() {
+                                        alert("Initial pre-upload message!");
+                                    });
+                                };
+                            });
+                        </script>
+                    </div>
+                    <input type="submit" class="btn btn-success" value="ثبت">
+                    <br>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock body %}
+</html>

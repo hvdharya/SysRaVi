@@ -1,0 +1,46 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+<script src={% static "js/jquery-1.11.3.min.js"%}></script>
+<script  src={% static "js/bootstrap.min.js" %}></script>
+<link rel="stylesheet" href={% static "css/admin.css" %}>
+<link rel="stylesheet" href={% static "css/main.css" %}>
+<link rel="stylesheet" href={% static "css/footer.css" %}>
+<link rel="stylesheet" href={% static "css/header-search.css" %}>
+<link rel="stylesheet" href={% static "css/header-login-signup.css" %}>
+<link rel="stylesheet" href={% static "css/header-user-dropdown.css" %}>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block body %}
+    <style>
+        body { background-color: #c5c5c5; }
+    </style>
+    <section style="padding-top:60px;padding-right:20px;padding-bottom: 30%;padding-left: 70px">
+        <div class="thumbnail">
+            <h2 class="farsi-font" >خریدها</h2>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center">Buy ID</th>
+                    <th class="text-center">Trace ID</th>
+                    <th class="text-center">Purchase ID</th>
+                    <th class="text-center">Event Name</th>
+                    <th class="text-center">User</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for buy in buys %}
+                    <tr>
+                    <td class="text-center"><button class="btn btn-default">{{buy.id}}</button></td>
+                    <td class="text-center">{{buy.trace_id}}</td>
+                    <td class="text-center">{{buy.purchase_id}}</td>
+                    <td class="text-center">{{name}}</td>
+                    <td class="text-center"><a href="/user/{{ buy.user.user_id }}/" class="btn btn-primary">{{buy.user}}</a></td>
+                    <td class="text-center"><a href="#" class="btn btn-danger" >Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock body %}

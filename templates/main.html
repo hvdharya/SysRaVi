@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <link href="../static/css/shop-homepage.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <style>
+        body { background: #808080; }
+    </style>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top: 20px">
+
+                <div class="panel panel-default farsi-font" style="font-size: 18px">
+                    <div class="panel-heading">دسته ها</div>
+                    {% for type in types %}
+                        <div class="panel-body">
+                            <a href="/category/{{ type.name }}">{{ type.name }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <h1 class="farsi-font">جدید ترین</h1>
+                <hr/>
+
+                <div class="row">
+                    {% for event in newest_event %}
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="../static/images/{{ event.picture}}" alt="">
+                                <div class="caption">
+                                    {#                                <h4 class="pull-right">$74.99</h4>#}
+                                    <h4><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
+                                    </h4>
+                                    <p style="max-lines: 1">{{ event.desc }}</p>
+                                    <h4>date: {{ event.date }}</h4>
+                                </div>
+                                {% if not admin %}
+                                    <a href="" class="pull-left btn btn-success buy">خرید</a>
+                                {% endif %}
+                                {% if admin %}
+                                    <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>
+                                    <a href="/edit-event/{{ event.id }}/" class="pull-left btn btn-info"/>ویرایش</a>
+                                {% endif %}
+                                <div class="ratings">
+                                    <p>
+                                    <h4>rating: {{ event.rate }}/5</h4>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+
+                <h1 class="farsi-font">پربیننده ترین</h1>
+                <hr/>
+
+                <div class="row">
+                    {% for event in best_events %}
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="../static/images/{{ event.picture}}">
+                                <div class="caption">
+                                    {#                                <h4 class="pull-right">$74.99</h4>#}
+                                    <h4><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
+                                    </h4>
+                                    <p style="max-lines: 1">{{ event.desc }}</p>
+                                    <h4>date: {{ event.date }}</h4>
+                                </div>
+                                {% if not admin %}
+                                    <a href="" class="pull-left btn btn-success buy">خرید</a>
+                                {% endif %}
+                                {% if admin %}
+                                    <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>
+                                    <a href="/edit-event/{{ event.id }}/" class="pull-left btn btn-info"/>ویرایش</a>
+                                {% endif %}
+                                <div class="ratings">
+                                    <p>
+                                    <h4>rating: {{ event.rate }}/5</h4>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock body %}

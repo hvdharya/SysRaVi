@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <script src={% static "js/jquery-1.11.3.min.js"%}></script>
+    <script  src={% static "js/bootstrap.min.js" %}></script>
+
+
+
+    <title>BlitJoo</title>
+
+    <link rel="stylesheet" href={% static "css/admin.css" %}>
+    <link rel="stylesheet" href={% static "css/bootstrap-rtl.css" %}>
+    <link rel="stylesheet" href={% static "css/footer.css" %}>
+    <link rel="stylesheet" href={% static "css/header-search.css" %}>
+    <link rel="stylesheet" href={% static "css/header-login-signup.css" %}>
+    <link rel="stylesheet" href={% static "css/header-user-dropdown.css" %}>
+
+</head>
+<body>
+
+{% if signed_in %}
+
+    <header class="header-user-dropdown header-search header-login-signup">
+
+        <div class="header-limiter">
+            <h1><a href="#">بلیت<span>جو</span></a></h1>
+
+
+            <div class="header-user-menu">
+                <div class="user-drop">
+                    <img src={% static "images/2.jpg" %} height="28" width="28" alt="User Image"/>
+                </div>
+                <div style="padding-right: 50px">
+                    <form method="get" action="#" >
+                        <input type="search" placeholder="جستجو" name="search" >
+                    </form>
+                </div>
+
+                <ul class="farsi-font">
+                    {% if not admin %}
+                        <li><a href="/user">تنضیمات</a></li>
+                        <li><a href="/activity">پرداختی ها</a></li>
+                    {% endif %}
+                    {% if admin %}
+                        <li><a href="/my-admin/settings/">تنضیمات</a></li>
+                        <li><a href="/my-admin/">صفحه اصلی</a></li>
+                    {% endif %}
+                    <li><a href="/exit" class="highlight">خروج</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </header>
+
+
+{% endif %}
+{% if  guest %}
+    <header class="header-search header-login-signup">
+
+        <div class="header-limiter">
+
+
+            <h1><a href="#">بلیت<span>جو</span></a></h1>
+            <form method="get" action="#">
+                <input type="search" placeholder="جستجو" name="search">
+            </form>
+            <ul id="login-list">
+                <li><a href="#">ورود</a></li>
+                <li><a data-toggle="modal" data-target="#myModal">ثبت نام</a></li>
+
+            </ul>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title farsi-font" style="color: #000000" id="myModalLabel">ورود به سامانه </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="/main/" method="post" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
+                                <div class="form-group">
+                                    <label style="color: #000000">نام کاربری:</label>
+                                    <input type="text" class="form-control" name="username">
+                                </div>
+                                &nbsp;
+                                <div class="form-group">
+                                    <label style="color: #000000">رمز عبور:</label>
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                                <br>
+                                <div class="checkbox">
+                                    <label style="color: #000000;"><input type="checkbox"> &nbsp;
+                                        مرا بخاطر بسپار
+                                    </label>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary farsi-font" value="ورود" >
+                                    <a href="/main/" class="btn btn-default farsi-font">انصراف</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <nav>
+                <a href="/main/">خانه</a>
+                <a href="#">تماس با ما</a>
+                <a href="#">درباره ما</a>
+            </nav>
+
+
+
+        </div>
+
+    </header>
+{% endif %}
+
+
+{% block body %}
+
+
+{% endblock %}
+
+<footer class="footer-distributed">
+
+    <div class="footer-left">
+
+        <h3><img  alt="Mountain View" style="width:50px;height:50px;" src={% static "images/logo.jpg" %}></h3>
+
+        <p class="footer-links">
+            <a href="/main/">Home</a>
+            ·
+            <a href="#">Blog</a>
+            ·
+            <a href="#">Pricing</a>
+            ·
+            <a href="#">About</a>
+            ·
+            <a href="#">Faq</a>
+            ·
+            <a href="#">Contact</a>
+        </p>
+
+        <p class="footer-company-name">RaVi &copy; 2015</p>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>دانشگاه صنعتی شریف</span> تهران, ایران</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+98 22334455</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">support@ravi.com</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p class="footer-company-about">
+            <span>درباره شرکت</span>
+            گروه فناوری روی کار خود را در پاییز سال ۱۳۹۴ آغاز کرده و هم‌اکنون مشغول انجام پروژه‌هایی‌ در زمینه طراحی سایت می‌باشد
+        </p>
+
+        <div class="footer-icons">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script>
+
+    $(document).ready(function() {
+
+        $('.header-search form').on('click', function(e) {
+
+            // If the form (which is turned into the search button) was
+            // clicked directly, toggle the visibility of the search box.
+
+            if(e.target == this) {
+                $(this).find('input').toggle();
+                $("#login-list").css("padding-right", "250px");
+            }
+
+        });
+    });
+
+    $(document).ready(function(){
+
+        var userMenu = $('.header-user-dropdown .header-user-menu .user-drop');
+        {#        var userMenu = $('#user-drop');#}
+
+        userMenu.on('touchend', function(e){
+
+            userMenu.addClass('show');
+
+            e.preventDefault();
+            e.stopPropagation();
+
+        });
+
+        // This code makes the user dropdown work on mobile devices
+
+        $(document).on('touchend', function(e){
+
+            // If the page is touched anywhere outside the user menu, close it
+            userMenu.removeClass('show');
+
+        });
+
+    });
+
+
+
+</script>
+
+</body>
+
+
+</html>

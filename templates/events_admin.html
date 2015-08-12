@@ -1,0 +1,54 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+<script src={% static "js/jquery-1.11.3.min.js"%}></script>
+<script  src={% static "js/bootstrap.min.js" %}></script>
+<link rel="stylesheet" href={% static "css/admin.css" %}>
+<link rel="stylesheet" href={% static "css/main.css" %}>
+<link rel="stylesheet" href={% static "css/footer.css" %}>
+<link rel="stylesheet" href={% static "css/header-search.css" %}>
+<link rel="stylesheet" href={% static "css/header-login-signup.css" %}>
+<link rel="stylesheet" href={% static "css/header-user-dropdown.css" %}>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block body %}
+    <style>
+        body { background-color: #c5c5c5; }
+    </style>
+    <section style="padding-top: 60px;padding-bottom: 30%;padding-left: 70px">
+        <div class="container thumbnail">
+            <h2 class="farsi-font" >رویداد ها</h2>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center">Event ID/Event Tickets</th>
+                    <th class="text-center">Event Name</th>
+                    <th class="text-center">Event Start</th>
+                    <th class="text-center">Event End</th>
+                    <th class="text-center">Tickets</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Event Rate</th>
+                    <th class="text-center">Event Place</th>
+                    <th class="text-center">Buy Report</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td class="text-center"><a href="/my-admin/tickets/{{ event.id }}/" class="btn btn-default" >{{event.id}}</a></td>
+                        <td class="text-center">{{event.name}}</td>
+                        <td class="text-center">{{event.date}}</td>
+                        <td class="text-center">{{event.deadline}}</td>
+                        <td class="text-center">{{event.ticket_num}}</td>
+                        <td class="text-center">{{event.ticket_price}}</td>
+                        <td class="text-center">{{event.rate}}</td>
+                        <td class="text-center">{{event.place}}</td>
+                        <td class="text-center"><a href="/my-admin/buys/{{ event.id }}/" class="btn btn-success">Buy Report</a></td>
+                        <td class="text-center"><a href="/events-delete/{{ event.id }}/" class="btn btn-danger" >Delete</a><a href="/edit-event/{{ event.id }}/" class="btn btn-primary" >Edit</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock body %}

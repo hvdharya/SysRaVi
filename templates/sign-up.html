@@ -1,0 +1,64 @@
+﻿{% extends "base.html" %}
+{%block body%}
+    <link href="../static/css/admin.css" rel="stylesheet" />
+
+    <style>
+        body { background: #808080; }
+    </style>
+    <div class="container">
+        <section style="padding-top: 70px; padding-bottom: 100px; padding-right: 450px;">
+            <div class="row">
+                <form role="form" action="/signed-up/" method="POST">{% csrf_token %}
+                    <div class="col-xs-5 farsi-font" style="float: right;">
+                        <label for="event_info"id="info">درج تصویر</label>
+                        <input id="file-4" name="file-4[]" type="file" multiple>
+                        <script>
+                            $(document).on('ready', function() {
+                                // the file input
+                                var $el = $('#file-4'), initPlugin = function() {
+                                    $el.fileinput({
+                                        uploadUrl: '/site/file-upload-single?type=1',
+                                        uploadExtraData: {kvId: '10'},
+                                        dropZoneEnabled: false
+                                    }).off('filepreupload').on('filepreupload', function() {
+                                        alert("Initial pre-upload message!");
+                                    });
+                                };
+                            });
+                        </script>
+                        <br />
+                        <label>نام کاربری</label>
+                        <input type="text" class="form-control" name="usr">
+                        <label>زمر عبور</label>
+                        <input type="password" class="form-control" name="pass">
+                        <label>نام</label>
+                        <input type="text" class="form-control"  name="name">
+                        <label>نام خانوادگی</label>
+                        <input type="text" class="form-control"  name="lastname">
+                        <label>پست الکترونیکی</label>
+                        <input type="email" class="form-control" name="mail">
+                        <label>شماره تماس</label>
+                        <input type="number" class="form-control" name="tel">
+                        <label>نشانی محل سکونت</label>
+                        <input type="text" class="form-control" name="addr">
+                        <label for="genre">جنسیت</label>
+                        <select class="form-control btn btn-default dropdown" name="gender">
+                            <option>زن</option>
+                            <option>مرد</option>
+                        </select>
+                        <br>
+                        <br>
+                        <input type="submit" class="btn btn-info" value="ثبت مشخصات">
+                    </div>
+                    <br /><br/>
+                </form>
+            </div>
+        </section>
+    </div>
+    </div>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+
+{% endblock body %}
+
+</html>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block body %}
+    {% load staticfiles %}
+    <link href={% static "css/shop-homepage.css" %} rel="stylesheet">
+    <link href={% static "css/main.css" %} rel="stylesheet">
+    <style>
+        body { background: #808080; }
+    </style>
+    <div class="container" id="wrapper">
+        <section style="padding-bottom: 50%">
+            <div class="row">
+                <div class="col-md-3" style="margin-top: 20px">
+                    <div class="panel panel-default farsi-font" style="font-size: 18px">
+                        {% if type == "all" %}
+                            <div class="panel-heading">دسته ها</div>
+                            <div class="panel-body">
+                                <a href="/my-admin/events/{{ type }}/">نمایش همه</a>
+                            </div>
+                            {% for mytype in types %}
+                                <div class="panel-body">
+                                    <a href="/category/{{ mytype.name }}/">{{ mytype.name }}</a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-9">
+
+                    {% for event in events %}
+
+                        <div class="col-sm-4 col-md-4">
+                            <div class="thumbnail" >
+                                <img src="http://placehold.it/320x150" alt="">
+                                <div class="caption">
+
+                                    <h4 class="farsi-font" style="text-align: center"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
+                                    </h4>
+                                    <p style="text-align: justify">{{ event.desc}}</p>
+                                </div>
+                                <div class="ratings">
+
+                                    <p>
+                                        {% for i in rate %}
+                                            <span class="glyphicon glyphicon-star"></span>
+                                        {% endfor %}
+                                        {% for i in notrange %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endfor %}
+                                        <span class="price"> {{ event.price }}</span>
+                                        {% if not admin %}
+                                            <a href="" class="pull-left btn btn-success buy">خرید</a>
+                                        {% endif %}
+                                        {% if admin %}
+                                            <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>
+                                            <a href="/edit-event/{{ event.id }}/" class="pull-left btn btn-info"/>ویرایش</a>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

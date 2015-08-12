@@ -1,0 +1,6 @@
+           session_key            |                                                                                                                       session_data                                                                                                                       |          expire_date          
+----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------
+ rgm35xxirau1l5n75zi3qmmxn2jjpc2q | MmM4ZGY2OWVkMWQ4ZDIxM2VmNzQzZDMyYzE0MWE0OWVhMjlmYTNkYjp7Il9hdXRoX3VzZXJfaGFzaCI6IjBkM2ZmYzI2ZjliZDkwMTRlNTliMDc0YmYwMjI3M2YyNjg2MDUxYjIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9 | 2015-07-25 08:54:31.949585+00
+ 40aihlpxwywqmfxtrreeyyyk9t2ymp92 | OWUxMTA4ZGQ0MmUxYjYzZDZlNTE2NTk1NWRiMmU3N2Y3OGYyMmU1OTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MSwiX2F1dGhfdXNlcl9oYXNoIjoiMGQzZmZjMjZmOWJkOTAxNGU1OWIwNzRiZjAyMjczZjI2ODYwNTFiMiJ9 | 2015-07-25 09:06:00.88901+00
+(2 rows)
+

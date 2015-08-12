@@ -1,0 +1,24 @@
+                           List of relations
+ Schema |               Name                |   Type   |     Owner      
+--------+-----------------------------------+----------+----------------
+ public | auth_group                        | table    | qtunckzouhpjfa
+ public | auth_group_id_seq                 | sequence | qtunckzouhpjfa
+ public | auth_group_permissions            | table    | qtunckzouhpjfa
+ public | auth_group_permissions_id_seq     | sequence | qtunckzouhpjfa
+ public | auth_permission                   | table    | qtunckzouhpjfa
+ public | auth_permission_id_seq            | sequence | qtunckzouhpjfa
+ public | auth_user                         | table    | qtunckzouhpjfa
+ public | auth_user_groups                  | table    | qtunckzouhpjfa
+ public | auth_user_groups_id_seq           | sequence | qtunckzouhpjfa
+ public | auth_user_id_seq                  | sequence | qtunckzouhpjfa
+ public | auth_user_user_permissions        | table    | qtunckzouhpjfa
+ public | auth_user_user_permissions_id_seq | sequence | qtunckzouhpjfa
+ public | django_admin_log                  | table    | qtunckzouhpjfa
+ public | django_admin_log_id_seq           | sequence | qtunckzouhpjfa
+ public | django_content_type               | table    | qtunckzouhpjfa
+ public | django_content_type_id_seq        | sequence | qtunckzouhpjfa
+ public | django_migrations                 | table    | qtunckzouhpjfa
+ public | django_migrations_id_seq          | sequence | qtunckzouhpjfa
+ public | django_session                    | table    | qtunckzouhpjfa
+(19 rows)
+

@@ -1,0 +1,53 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+<script src={% static "js/jquery-1.11.3.min.js"%}></script>
+<script  src={% static "js/bootstrap.min.js" %}></script>
+<link rel="stylesheet" href={% static "css/admin.css" %}>
+<link rel="stylesheet" href={% static "css/main.css" %}>
+<link rel="stylesheet" href={% static "css/footer.css" %}>
+<link rel="stylesheet" href={% static "css/header-search.css" %}>
+<link rel="stylesheet" href={% static "css/header-login-signup.css" %}>
+<link rel="stylesheet" href={% static "css/header-user-dropdown.css" %}>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block body %}
+    <style>
+        body { background-color: #c5c5c5; }
+    </style>
+    <section style="padding-top:60px;padding-bottom: 30%;padding-left: 70px">
+        <div class="container thumbnail">
+            <h2 class="farsi-font" >بلیت ها</h2>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center">Ticket ID</th>
+                    <th class="text-center">Ticket Price</th>
+                    <th class="text-center">Seat Number</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Free</th>
+                    <th class="text-center">Event</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <td class="text-center"><button class="btn btn-default">{{ticket.id}}</button></td>
+                        <td class="text-center">{{ticket.price}}</td>
+                        <td class="text-center">{{ticket.seat_num}}</td>
+                        <td class="text-center">{{ticket.type}}</td>
+                        {% if ticket.free == 0 %}
+                            <td class="text-center"><button class="btn btn-success">Free</button></td>
+                        {% endif %}
+                        {% if ticket.free == 1 %}
+                            <td class="text-center"><button class="btn btn-default"disabled>Sold</button></td>
+                        {% endif %}
+                        <td class="text-center"><a href="/event/{{ id }}/" class="btn btn-primary">{{name}}</a></td>
+                        <td class="text-center"><a href="/tickets-delete/{{ ticket.id }}/" class="btn btn-danger" >Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock body %}

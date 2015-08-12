@@ -1,0 +1,44 @@
+.panel-body{
+    padding: 10px;
+    border-bottom: 1px solid #b8b8b8;
+}
+
+.carousel-holder{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.main-title{
+    max-width: inherit;
+    max-lines: 2;
+}
+
+.col-md-9{
+    padding-top: 20px;
+    font-family: mitra;
+}
+
+.price{
+    color: #000000;
+    font-family: mitra;
+    margin-right: 15px;
+}
+
+.buy{
+    : 15px;
+
+}
+
+.buy:hover {
+    opacity: 2;
+}
+
+.farsi-font {
+    font-family: mitra;
+}
+
+.footer-distributed {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}

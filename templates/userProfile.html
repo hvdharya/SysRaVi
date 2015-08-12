@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block body %}
+    
+
+    <div class="container">
+        <section style="padding-bottom: 50px; padding-top: 50px;">
+            <div class="row">
+                <div class="col-md-4" style="float: right;">
+                    
+                    <br />
+                    <br />
+                    <label>نام کاربری</label>
+                    <input type="text" class="form-control" placeholder="hvdh_ts" id="usr">
+                    <label>نام و نام خانوادگی</label>
+                    <input type="text" class="form-control" placeholder="آریا معتمدهاشمی " id="name">
+                    <label>پست الکترونیکی</label>
+                    <input type="text" class="form-control" placeholder="hvdh_ts@live.com" id="mail">
+					<label>شماره تماس</label>
+                    <input type="text" class="form-control" placeholder="09122402934" id="tel">
+					<label>نشانی محل سکونت</label>
+                    <input type="text" class="form-control" id="addr">
+					<label>جنسیت</label>
+					<br>
+					<label class="radio-inline"><input type="radio" name="optradio">مرد</label>
+					<label class="radio-inline"><input type="radio" name="optradio">زن</label>
+                    <br>
+					<br>
+                    <a href="#" class="btn btn-success">به روز رسانی تغییرات</a>
+                    <br /><br/>
+                </div>
+                <div class="col-md-8" style="float: right;">
+                        <div class="form-group col-md-8">
+                        <h3>تغییر رمز عبور</h3>
+                        <br />
+                        <label>رمز عبور قبلی</label>
+                        <input type="password" class="form-control">
+                        <label>رمز عبور جدید</label>
+                        <input type="password" class="form-control">
+                        <label>تائید رمز عبور جدید</label>
+                        <input type="password" class="form-control" />
+                        <br>
+                        <a href="#" class="btn btn-warning">تغییر رمز عبور</a>
+                    </div>
+                </div>
+            </div>
+            <!-- ROW END -->
+        </section>
+        <!-- SECTION END -->
+    </div>
+    <!-- CONATINER END -->
+{% endblock body %}

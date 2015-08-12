@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <style>
+        body { background-color: #c5c5c5; }
+    </style>
+    <section style="padding-top:60px;padding-bottom: 30%;padding-left: 70px">
+        <div class="container thumbnail">
+            <h2 class="farsi-font" >Admin Panel</h2>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center">Add Event</th>
+                    <th class="text-center">Remove/Edit/See</th>
+                    <th class="text-center">Types and Subtypes</th>
+                    <th class="text-center">User Management</th>
+                    <th class="text-center">Settings</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"> <div class="dropdown farsi-font">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                افزودن رویداد
+                                <span class="caret"></span>
+                            </button>
+                            <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                {% for type in types %}
+                                    <li><a href="/my-admin/add-event/{{ type.name }}/">{{ type.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/events/all/" class="btn btn-default">مشاهده و حذف رویدادها</a></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/types/all/" class="btn btn-default">مشاهده،حذف و افزودن دسته</a></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/users/all/"class="btn btn-default" >مشاهده و حذف کاربران</a></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/settings/" class="btn btn-default">تنظیمات</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock body %}
+
+
+
+
+
+
+
+
+{#{% block body %}#}
+{#    <style>#}
+{#        body { background: #808080; }#}
+{#    </style>#}
+{#    {% load staticfiles %}#}
+{#    <link href={% static "css/main.css" %}>#}
+{#    <div class="container farsi-font">#}
+{#        <section style="padding-top: 40px;padding-right: 200px;padding-left: 200px;padding-bottom: 50%">#}
+{#            <div class="row">#}
+{#                <div class="col-md-2">#}
+{#                    <div class="dropdown">#}
+{#                        <button class="btn-lg btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">#}
+{#                            افزودن رویداد#}
+{#                            <span class="caret"></span>#}
+{#                        </button>#}
+{#                        <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">#}
+{#                            {% for type in types %}#}
+{#                                <li><a href="/my-admin/add-event/{{ type.name }}/">{{ type.name }}</a></li>#}
+{#                            {% endfor %}#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-md-2">#}
+{#                    <button class="btn-info btn-lg"><a href="/my-admin/events/all/">مشاهده و حذف رویدادها</a></button>#}
+{#                </div>#}
+{#                <div class="col-md-2">#}
+{#                    <button class="btn-info btn-lg"><a href="/my-admin/types/all/">مشاهده،حذف و افزودن دسته</a></button>#}
+{#                </div>#}
+{#                <div class="col-md-2">#}
+{#                    <button class="btn-info btn-lg"><a href="/my-admin/users/all/">مشاهده و حذف کاربران</a></button>#}
+{#                </div>#}
+{#                <div class="col-md-2">#}
+{#                    <button class="btn-warning btn-lg"><a href="/my-admin/settings/">تنظیمات</a></button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+{#    </div>#}
+{#{% endblock body %}#}

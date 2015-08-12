@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<script src={% static "js/jquery-1.11.3.min.js"%}></script>
+<script  src={% static "js/bootstrap.min.js" %}></script>
+<link rel="stylesheet" href={% static "css/admin.css" %}>
+<link rel="stylesheet" href={% static "css/main.css" %}>
+<link rel="stylesheet" href={% static "css/footer.css" %}>
+<link rel="stylesheet" href={% static "css/header-search.css" %}>
+<link rel="stylesheet" href={% static "css/header-login-signup.css" %}>
+<link rel="stylesheet" href={% static "css/header-user-dropdown.css" %}>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block body %}
+    <style>
+        body { background-color: #c5c5c5; }
+    </style>
+    <section style="padding-top:60px;padding-bottom: 30%;padding-left: 70px">
+        <div class="container thumbnail">
+            <h2 class="farsi-font">کاربران</h2>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center">User ID</th>
+                    <th class="text-center">UserName</th>
+                    <th class="text-center">First Name</th>
+                    <th class="text-center">Last Name</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    {% if user.id != 1 %}
+                        <tr>
+                            <td class="text-center"><button class="btn btn-default">{{user.id}}</button></td>
+                            <td class="text-center">{{user.username}}</td>
+                            <td class="text-center">{{user.first_name}}</td>
+                            <td class="text-center">{{user.last_name}}</td>
+                            <td class="text-center">{{user.email}}</td>
+                            <td class="text-center"><a href="/users-delete/{{ user.id }}/" class="btn btn-danger" >Delete</a><a href="/user/{{ user.id }}/" class="btn btn-primary" >Edit</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock body %}
