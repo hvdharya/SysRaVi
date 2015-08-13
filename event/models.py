@@ -68,7 +68,7 @@ class Event(models.Model):
     desc = models.CharField(max_length=100)
     date = models.DateField()
     deadline = models.DateField()
-    picture = models.ImageField()
+    picture = models.ImageField(upload_to='static/images')
     place = models.CharField(max_length=100)
     ticket_num = models.IntegerField()
     type = models.CharField(max_length=100)
@@ -81,6 +81,3 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
-
-		
-		

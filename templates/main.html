@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
+    {% load staticfiles %}
     <link href="../static/css/shop-homepage.css" rel="stylesheet">
     <link href="../static/css/main.css" rel="stylesheet">
     <style>
@@ -65,7 +66,7 @@
                     {% for event in best_events %}
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <img src="../static/images/{{ event.picture}}">
+                                <img src="{% static "images" %}/{{ event.picture}}">
                                 <div class="caption">
                                     {#                                <h4 class="pull-right">$74.99</h4>#}
                                     <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>

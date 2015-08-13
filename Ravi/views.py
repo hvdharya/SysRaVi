@@ -6,6 +6,8 @@ from ticket.models import Buy,Ticket
 
 
 def mainPage(request):
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
     myevent = Event.objects.order_by('-rate')
     newest = Event.objects.order_by('-date')
     types = Type.objects.all()
@@ -18,22 +20,26 @@ def mainPage(request):
     for i in range(index):
         best_events.append(myevent[i])
 
-    return render(request, 'main.html', {'signed_in': True,'admin':False, 'best_events': best_events,'newest_event':new_event,'types':types})
+    return render(request, 'main.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in, 'best_events': best_events,'newest_event':new_event,'types':types})
 
 
 def startPage(request):
-
-    return render(request, 'start.html', {'signed_in': True})
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
+    return render(request, 'start.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
 
 
 def user(request):
-    return render(request, 'userProfile.html', {'signed_in': True})
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
+    return render(request, 'userProfile.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
 
 
 def modir(request):
-
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
     types = Type.objects.all()
-    return render(request, 'my-admin.html', {'signed_in': True, 'admin': True,'types':types})
+    return render(request, 'my-admin.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in,'types':types})
 
 
 def add(request):
@@ -41,11 +47,14 @@ def add(request):
 
 
 def signup(request):
-    return  render(request,'sign-up.html',{'signed_in':True})
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
+    return  render(request,'sign-up.html',{'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
 
 
 def adminSetting(request):
-
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
     superUser = 'hvdh'
     djangoUser = models.User.objects.filter(username=superUser)
     myUser = User.objects.filter(user = djangoUser)
@@ -73,12 +82,15 @@ def adminSetting(request):
 
 
     return render(request, 'admin.html',
-                  {'picture': pic, 'username':superUser, 'lastname':lastname, 'tel':tel, 'name':name, 'addr':address, 'mail':mail[0],'signed_in':True,'admin':True}
+                  {'picture': pic, 'username':superUser, 'lastname':lastname,
+                   'tel':tel, 'name':name, 'addr':address, 'mail':mail[0],
+                   'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in}
                   )
 
 
 def edit_see(request, username):
-
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
     djangoUser = models.User.objects.filter(id=username)
     usern = djangoUser.values_list('username')[0]
     myUser = User.objects.filter(user = djangoUser)
@@ -112,6 +124,8 @@ def edit_see(request, username):
             models.User.objects.filter(username=username).update(email=request.POST.get('mail'))
 
     return render(request, 'profile_edit.html',
-                  {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0], 'tel':tel[0], 'name':name[0], 'addr':address[0], 'mail':mail[0],'signed_in': True}
+                  {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0],
+                   'tel':tel[0], 'name':name[0], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
+                   'admin':is_admin, 'guest': not is_signed_in}
                   )
 

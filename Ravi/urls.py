@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from event.views import eventDetailedView, eventsType, create_event,edit_event,delete_events,subtypes,subtype,delete_tickets
-from account.views import create_account,login_to_site,allUsers,delUsers,eventsSub
+from account.views import create_account,login_to_site,allUsers,delUsers,eventsSub, log_out
 from ticket.views import show_cart
 from Ravi import views
 from django.views.generic import RedirectView
@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^my-admin/', include('account.urls')),
     url(r'^edit-event/([0-9]+)', edit_event),
     url(r'^login/',login_to_site),
+    url(r'^exit/',log_out),
     url(r'^events-delete/([a-zA-Z0-9]+)',delete_events),
     url(r'^users/all/',allUsers),
     url(r'^users-delete/([0-9]+)',delUsers),
