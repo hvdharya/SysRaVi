@@ -29,3 +29,9 @@ class Buy(models.Model):
     date = models.DateField()
     purchase_id = models.IntegerField()
     trace_id = models.IntegerField()
+
+
+class Cart(models.Model):
+    user = models.ForeignKey('account.User')
+    event = models.ForeignKey('event.Event')
+    number = models.IntegerField()

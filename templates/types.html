@@ -19,8 +19,8 @@
                 <div class="panel-heading">دسته ها</div>
                 {% for type in types %}
                     <div class="panel-body">
-                        <a href="/my-admin/SubTypes/{{ type.type }}/"><button class="btn btn-primary">{{ type.type }}</button></a>
-                        <div class="pull-left"><a href="/my-admin/deleteTypes/{{ type.name }}/"><input class="btn btn-danger" value="Delete"></a> </div>
+                        <a href="/my-admin/SubTypes/{{ type.id }}/"><button class="btn btn-primary">{{ type.type }}</button></a>
+                        <div class="pull-left"><a href="/my-admin/deleteTypes/{{ type.id }}/"><input class="btn btn-danger" value="Delete"></a> </div>
                     </div>
                 {% endfor %}
             </div>
@@ -33,7 +33,7 @@
                         </button>
                         <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             {% for type in types %}
-                                <li><a href="/my-admin/SubTypes/{{ type.name }}/">{{ type.name }}</a></li>
+                                <li><a href="/my-admin/SubTypes/{{ type.id }}/">{{ type.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

@@ -14,10 +14,10 @@
                 <h4 class="dividing header farsi-font">اطلاعات خرید</h4>
                 <br />
                 <label class="farsi-font">به حساب</label>
-                <input type="text" style="max-width: 200px;" value="RaVi Corp." disabled>
+                <input class="farsi-font" type="text" style="max-width: 200px;" value="گروه فناوری راوی" disabled>
                 <br />
                 <label class="farsi-font">مبلغ خرید</label>
-                <input type="text" style="max-width: 100px;" value="{{ total }}" disabled>
+                <input class="farsi-font" type="text" style="max-width: 100px;" value="{{ total }}" disabled>
                 <br />
                 <div class="seven wide field">
                     <label class="farsi-font">شماره کارت</label>
@@ -26,17 +26,16 @@
                 <div class="five wide field">
                     <label class="farsi-font">رمز دوم</label>
                         <i class="lock icon"></i>
-                        <input type="password" style="max-width: 110px;" name="card[cvc]" maxlength="12" placeholder="Password">
+                        <input type="password" style="max-width: 110px;" name="card[cvc]" maxlength="12">
                 </div>
                 <div class="three wide field">
                     <label> CVV2 </label>
-                    <input type="text" style="max-width: 80px;" style="max-width: 100px;" name="cvv" maxlength="4" placeholder="cvv2">
+                    <input type="text" style="max-width: 80px;" style="max-width: 100px;" name="cvv" maxlength="4">
                 </div>
 
                 <div class="fields">
                     <div class="six wide field">
                         <label class="farsi-font">تاریخ انقضا</label>
-                        <br>
                         <input type="text" style="max-width: 40px;"  name="card[expire-month]" maxlength="2"> / <input class="form-group-sm" type="text"style="max-width: 40px;" name="card[expire-year]" maxlength="4">
                     </div>
                     <br />

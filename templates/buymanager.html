@@ -20,23 +20,23 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="text-center">Buy ID</th>
-                    <th class="text-center">Trace ID</th>
-                    <th class="text-center">Purchase ID</th>
-                    <th class="text-center">Event Name</th>
-                    <th class="text-center">User</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center farsi-font">شماره خرید</th>
+                    <th class="text-center farsi-font">کد رهگیری</th>
+                    <th class="text-center farsi-font">شناسه خرید</th>
+                    <th class="text-center farsi-font">نام رویداد</th>
+                    <th class="text-center farsi-font">کاربر</th>
+                    <th class="text-center farsi-font">عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for buy in buys %}
                     <tr>
-                    <td class="text-center"><button class="btn btn-default">{{buy.id}}</button></td>
-                    <td class="text-center">{{buy.trace_id}}</td>
-                    <td class="text-center">{{buy.purchase_id}}</td>
-                    <td class="text-center">{{name}}</td>
-                    <td class="text-center"><a href="/user/{{ buy.user.user_id }}/" class="btn btn-primary">{{buy.user}}</a></td>
-                    <td class="text-center"><a href="#" class="btn btn-danger" >Delete</a></td>
+                    <td class="text-center farsi-font"><button class="btn btn-default">{{buy.id}}</button></td>
+                    <td class="text-center farsi-font">{{buy.trace_id}}</td>
+                    <td class="text-center farsi-font">{{buy.purchase_id}}</td>
+                    <td class="text-center farsi-font">{{name}}</td>
+                    <td class="text-center farsi-font"><a href="/user/{{ buy.user.user_id }}/" class="btn btn-primary">{{buy.user}}</a></td>
+                    <td class="text-center farsi-font"><a href="#" class="btn btn-danger" >حذف</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

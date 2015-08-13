@@ -3,7 +3,7 @@ from django.contrib import admin
 from event.views import eventDetailedView, eventsType,ticketmanager, create_event,edit_event,delete_events,addType,delType,showsubs,delSubType,edit_subtype
 from Ravi import views
 from account.views import allUsers, delUsers,eventsall,types,portal
-from ticket.views import buymanager
+from ticket.views import buymanager,show_cart
 
 urlpatterns = patterns('',
 
@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^SubTypes/([a-zA-Z0-9]+)', showsubs),
     url(r'^deleteSubTypes/([a-zA-Z0-9]+)', delSubType),
     url(r'^edit/([a-zA-Z0-9]+)',edit_subtype),
+    url(r'^cart/',show_cart),
 
 
 )

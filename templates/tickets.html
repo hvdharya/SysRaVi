@@ -20,30 +20,30 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="text-center">Ticket ID</th>
-                    <th class="text-center">Ticket Price</th>
-                    <th class="text-center">Seat Number</th>
-                    <th class="text-center">Type</th>
-                    <th class="text-center">Free</th>
-                    <th class="text-center">Event</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center farsi-font">شماره بلیت</th>
+                    <th class="text-center farsi-font">قیمت بلیت / ریال</th>
+                    <th class="text-center farsi-font">شماره صندلی</th>
+                    <th class="text-center farsi-font">نوع</th>
+                    <th class="text-center farsi-font">آزاد/فروخته شده</th>
+                    <th class="text-center farsi-font">رویداد</th>
+                    <th class="text-center farsi-font">عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for ticket in tickets %}
                     <tr>
-                        <td class="text-center"><button class="btn btn-default">{{ticket.id}}</button></td>
-                        <td class="text-center">{{ticket.price}}</td>
-                        <td class="text-center">{{ticket.seat_num}}</td>
-                        <td class="text-center">{{ticket.type}}</td>
+                        <td class="text-center farsi-font"><button class="btn btn-default">{{ticket.id}}</button></td>
+                        <td class="text-center farsi-font">{{ticket.price}}</td>
+                        <td class="text-center farsi-font">{{ticket.seat_num}}</td>
+                        <td class="text-center farsi-font">{{ticket.type}}</td>
                         {% if ticket.free == 0 %}
-                            <td class="text-center"><button class="btn btn-success">Free</button></td>
+                            <td class="text-center farsi-font"><button class="btn btn-success">آزاد</button></td>
                         {% endif %}
                         {% if ticket.free == 1 %}
-                            <td class="text-center"><button class="btn btn-default"disabled>Sold</button></td>
+                            <td class="text-center farsi-font"><button class="btn btn-default"disabled>فروخته شده</button></td>
                         {% endif %}
-                        <td class="text-center"><a href="/event/{{ id }}/" class="btn btn-primary">{{name}}</a></td>
-                        <td class="text-center"><a href="/tickets-delete/{{ ticket.id }}/" class="btn btn-danger" >Delete</a></td>
+                        <td class="text-center farsi-font"><a href="/event/{{ id }}/" class="btn btn-primary">{{name}}</a></td>
+                        <td class="text-center farsi-font"><a href="/tickets-delete/{{ ticket.id }}/" class="btn btn-danger" >حذف</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

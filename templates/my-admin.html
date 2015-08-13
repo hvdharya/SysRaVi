@@ -10,31 +10,33 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="text-center">Add Event</th>
-                    <th class="text-center">Remove/Edit/See</th>
-                    <th class="text-center">Types and Subtypes</th>
-                    <th class="text-center">User Management</th>
-                    <th class="text-center">Settings</th>
+                    <th class="text-center farsi-font">اضافه کردن رویداد</th>
+                    <th class="text-center farsi-font">حذف/ویرایش/مشاهده</th>
+                    <th class="text-center farsi-font">دسته ها و زیر دسته ها</th>
+                    <th class="text-center farsi-font">مدیریت کاربران</th>
+                    <th class="text-center farsi-font">تنظیمات</th>
+                    <th class="text-center farsi-font">سبد</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center"> <div class="dropdown farsi-font">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                افزودن رویداد
-                                <span class="caret"></span>
-                            </button>
-                            <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                {% for type in types %}
-                                    <li><a href="/my-admin/add-event/{{ type.name }}/">{{ type.name }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div></td>
-                        <td class="text-center farsi-font"><a href="/my-admin/events/all/" class="btn btn-default">مشاهده و حذف رویدادها</a></td>
-                        <td class="text-center farsi-font"><a href="/my-admin/types/all/" class="btn btn-default">مشاهده،حذف و افزودن دسته</a></td>
-                        <td class="text-center farsi-font"><a href="/my-admin/users/all/"class="btn btn-default" >مشاهده و حذف کاربران</a></td>
-                        <td class="text-center farsi-font"><a href="/my-admin/settings/" class="btn btn-default">تنظیمات</a></td>
-                    </tr>
+                <tr>
+                    <td class="text-center"> <div class="dropdown farsi-font">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            افزودن رویداد
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            {% for type in types %}
+                                <li><a href="/my-admin/add-event/{{ type.id }}/">{{ type.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div></td>
+                    <td class="text-center farsi-font"><a href="/my-admin/events/all/" class="btn btn-default">مشاهده و حذف رویدادها</a></td>
+                    <td class="text-center farsi-font"><a href="/my-admin/types/all/" class="btn btn-default">مشاهده،حذف و افزودن دسته</a></td>
+                    <td class="text-center farsi-font"><a href="/my-admin/users/all/"class="btn btn-default" >مشاهده و حذف کاربران</a></td>
+                    <td class="text-center farsi-font"><a href="/my-admin/settings/" class="btn btn-default">تنظیمات</a></td>
+                    <td class="text-center farsi-font"><a href="/my-admin/cart/" class="btn btn-info"> سبد خرید </a></td>
+                </tr>
                 </tbody>
             </table>
         </div>

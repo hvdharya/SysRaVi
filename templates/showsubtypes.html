@@ -20,17 +20,17 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="text-center">Type</th>
-                    <th class="text-center">SubType</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center farsi-font">دسته</th>
+                    <th class="text-center farsi-font">زیر دسته</th>
+                    <th class="text-center farsi-font">عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for subtype in subtypes %}
                     <tr>
-                        <td class="text-center"><button class="btn btn-primary" disabled>{{type}}</button></td>
-                        <td class="text-center"><a href="/my-admin/edit/{{ subtype.sub_type }}/" class="btn btn-default">{{ subtype.name }}</a></td>
-                        <td class="text-center"><a href="/my-admin/deleteSubTypes/{{ subtype.sub_type }}/"><input class="btn btn-danger" value="Delete"></a></td>
+                        <td class="text-center farsi-font"><button class="btn btn-primary" disabled>{{type}}</button></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/edit/{{ subtype.id }}/" class="btn btn-default">{{ subtype.name }}</a></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/deleteSubTypes/{{ subtype.id }}/"><input class="btn btn-danger" value="حذف"></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

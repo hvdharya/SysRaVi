@@ -16,7 +16,7 @@
                     <div class="panel-heading">دسته ها</div>
                     {% for type in types %}
                         <div class="panel-body">
-                            <a href="/category/{{ type.name }}">{{ type.name }}</a>
+                            <a href="/category/{{ type.id }}">{{ type.name }}</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -34,10 +34,10 @@
                                 <img src="../static/images/{{ event.picture}}" alt="">
                                 <div class="caption">
                                     {#                                <h4 class="pull-right">$74.99</h4>#}
-                                    <h4><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
+                                    <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
                                     </h4>
-                                    <p style="max-lines: 1">{{ event.desc }}</p>
-                                    <h4>date: {{ event.date }}</h4>
+                                    <p style="max-lines: 1" class="farsi-font">{{ event.desc }}</p>
+                                    <h4 class="farsi-font">تاریخ {{ event.date }}</h4>
                                 </div>
                                 {% if not admin %}
                                     <a href="" class="pull-left btn btn-success buy">خرید</a>
@@ -48,7 +48,7 @@
                                 {% endif %}
                                 <div class="ratings">
                                     <p>
-                                    <h4>rating: {{ event.rate }}/5</h4>
+                                    <h4 class="farsi-font">امتیاز {{ event.rate }}/۵</h4>
                                     </p>
                                 </div>
                             </div>
@@ -68,10 +68,10 @@
                                 <img src="../static/images/{{ event.picture}}">
                                 <div class="caption">
                                     {#                                <h4 class="pull-right">$74.99</h4>#}
-                                    <h4><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
+                                    <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
                                     </h4>
                                     <p style="max-lines: 1">{{ event.desc }}</p>
-                                    <h4>date: {{ event.date }}</h4>
+                                    <h4 class="farsi-font"> تاریخ {{ event.date }}</h4>
                                 </div>
                                 {% if not admin %}
                                     <a href="" class="pull-left btn btn-success buy">خرید</a>
@@ -82,7 +82,7 @@
                                 {% endif %}
                                 <div class="ratings">
                                     <p>
-                                    <h4>rating: {{ event.rate }}/5</h4>
+                                    <h4 class="farsi-font">امتیاز {{ event.rate }}/۵</h4>
                                     </p>
                                 </div>
                             </div>

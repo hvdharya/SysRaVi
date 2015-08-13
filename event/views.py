@@ -38,10 +38,10 @@ def addType(request):
         createtype = Type(type=type,name=type)
         t = Type.objects.filter(name=type);
         t2 = t.values_list('id')
-        types = Type.objects.get(id=t2)
         if len(t) < 1:
             createtype.save()
         else:
+            types = Type.objects.get(id=t2)
             createtype = types
         for i in range(100):
             str1 = "input"+str(i)
@@ -74,12 +74,14 @@ def delSubType(request,subtypename):
 
     return redirect(str1)
 
-def edit_subtype(request,subtypename):
+def edit_subtype(request,id):
 
-        if request.method == 'POST':
-            str = request.POST.get("0")
-            Subtype.objects.filter(sub_type=subtypename).update(sub_type=request.POST.get("0"),name=str)
-        return render(request,'edit-sub.html',{'sub_type':subtypename,'admin':True,'signed_in':True})
+    subtypename = Subtype.objects.filter(id=id).values_list('name')[0][0]
+    if request.method == 'POST':
+        str = request.POST.get("0")
+        Subtype.objects.filter(id=id).update(sub_type=request.POST.get("0"),name=str)
+        subtypename = Subtype.objects.filter(id=id).values_list('name')[0][0]
+    return render(request,'edit-sub.html',{'id':id,'sub_type':subtypename,'admin':True,'signed_in':True})
 
 def eventsType(request, e_type):
 
@@ -88,9 +90,9 @@ def eventsType(request, e_type):
         allEvents = Event.objects.all()
         e_type = 'all'
         return render(request, 'events_admin.html', {'signed_in':True,'admin': True,'types':types1, 'type': e_type, 'events': allEvents})
-    # else:
-    #     allEvents = Event.objects.filter(type=e_type)
-    #     return render(request, 'subtypes.html', {'signed_in':True,'admin': True,'types':types1,'type': e_type, 'events': allEvents})
+        # else:
+        #     allEvents = Event.objects.filter(type=e_type)
+        #     return render(request, 'subtypes.html', {'signed_in':True,'admin': True,'types':types1,'type': e_type, 'events': allEvents})
 def ticketmanager(request,eventid):
 
     eventid1 = Event.objects.filter(id=eventid)
@@ -118,18 +120,19 @@ def eventsSubtype(request, e_type, subtype):
     print(subtype)
     return render(request, 'events.html', {'signed_in': True,'admin':True,'type': e_type, 'events': allEvents})
 
-def subtypes (request , typename):
+def subtypes (request , id):
 
-    types = Type.objects.filter(name=typename)
+    types = Type.objects.filter(id=id)
+    typename = types.values_list('name')[0][0]
     subs1 = Subtype.objects.filter(type=types)
-    allEvents = Event.objects.filter(type=typename)
+    allEvents = Event.objects.filter(type=types.values_list('name')[0][0])
     # allEvents = allEvents.filter(sub_type=sub)
     return render(request, 'subtypes.html', {'signed_in': True,'type': typename, 'subtypes': subs1,'events':allEvents})
 
-def subtype (request , subtypename):
+def subtype (request , id):
 
-    sub1 = Subtype.objects.filter(name=subtypename)
-    allEvents = Event.objects.filter(sub_type=subtypename)
+    sub1 = Subtype.objects.filter(id=id)
+    allEvents = Event.objects.filter(sub_type=sub1.values_list('name')[0][0])
     mytype1 = sub1.values_list('type')
     mytype=  Type.objects.filter(id=mytype1)
     mytype = mytype[0]
@@ -142,9 +145,10 @@ def delete_events(request,event_id):
     # allEvents = Event.objects.all()
     # return render(request,'events.html',{'admin':True,'type':'all','events':allEvents})
 
-def create_event(request,typename):
+def create_event(request,id):
 
-    type1 = Type.objects.filter(name=typename)
+    type1 = Type.objects.filter(id=id)
+    typename=type1.values_list('name')[0][0]
     subs = Subtype.objects.filter(type=type1)
     if request.method == 'POST':
         name = request.POST['event_name']
@@ -154,7 +158,7 @@ def create_event(request,typename):
         date = request.POST['datepicker']
         deadline = request.POST['datepicker1']
         place = request.POST['event_place']
-        type = typename
+        type = type1.values_list('name')[0][0]
         sub_type = request.POST['genre']
         address = request.POST['event_addr']
         ticket_price = request.POST['event_price']
@@ -165,12 +169,13 @@ def create_event(request,typename):
             ticket = Ticket(price=ticket_price,type='Normal',seat_num=i,event=event,buy=None,free=0)
             ticket.save();
 
-    return render(request, 'event-adder.html',{'signed_in':True,'admin':True,'type':typename,'subtypes':subs})
+    return render(request, 'event-adder.html',{'signed_in':True,'admin':True,'id':id,'type':typename,'subtypes':subs})
 
 
-def showsubs(request,typename):
+def showsubs(request,typepid):
 
-    type = Type.objects.filter(type=typename)
+    type = Type.objects.filter(id=typepid)
+    typename = type.values_list('name')[0][0]
     subtypes = Subtype.objects.filter(type=type)
 
     return render(request,'showsubtypes.html',{'subtypes':subtypes,'type':typename,'signed_in':Type,'admin':True})

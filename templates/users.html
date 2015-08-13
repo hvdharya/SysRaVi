@@ -20,24 +20,24 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="text-center">User ID</th>
-                    <th class="text-center">UserName</th>
-                    <th class="text-center">First Name</th>
-                    <th class="text-center">Last Name</th>
-                    <th class="text-center">E-mail</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center farsi-font">شماره کاربری</th>
+                    <th class="text-center farsi-font">نام کاربری</th>
+                    <th class="text-center farsi-font">نام</th>
+                    <th class="text-center farsi-font">نام خانوداگی</th>
+                    <th class="text-center farsi-font">پست الکترونیکی</th>
+                    <th class="text-center farsi-font">عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     {% if user.id != 1 %}
                         <tr>
-                            <td class="text-center"><button class="btn btn-default">{{user.id}}</button></td>
-                            <td class="text-center">{{user.username}}</td>
-                            <td class="text-center">{{user.first_name}}</td>
-                            <td class="text-center">{{user.last_name}}</td>
-                            <td class="text-center">{{user.email}}</td>
-                            <td class="text-center"><a href="/users-delete/{{ user.id }}/" class="btn btn-danger" >Delete</a><a href="/user/{{ user.id }}/" class="btn btn-primary" >Edit</a></td>
+                            <td class="text-center farsi-font"><button class="btn btn-default">{{user.id}}</button></td>
+                            <td class="text-center farsi-font">{{user.username}}</td>
+                            <td class="text-center farsi-font">{{user.first_name}}</td>
+                            <td class="text-center farsi-font">{{user.last_name}}</td>
+                            <td class="text-center farsi-font">{{user.email}}</td>
+                            <td class="text-center farsi-font"><a href="/users-delete/{{ user.id }}/" class="btn btn-danger" >حذف</a> <a href="/user/{{ user.id }}/" class="btn btn-primary" >ویرایش</a></td>
                         </tr>
                     {% endif %}
                 {% endfor %}

@@ -20,31 +20,31 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="text-center">Event ID/Event Tickets</th>
-                    <th class="text-center">Event Name</th>
-                    <th class="text-center">Event Start</th>
-                    <th class="text-center">Event End</th>
-                    <th class="text-center">Tickets</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Event Rate</th>
-                    <th class="text-center">Event Place</th>
-                    <th class="text-center">Buy Report</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center farsi-font">شماره رویداد</th>
+                    <th class="text-center farsi-font">نام رویداد</th>
+                    <th class="text-center farsi-font">شروع رویداد</th>
+                    <th class="text-center farsi-font">پایان رویداد</th>
+                    <th class="text-center farsi-font">بلیت ها</th>
+                    <th class="text-center farsi-font">قیمت بلیت ها</th>
+                    <th class="text-center farsi-font">امتیاز رویداد</th>
+                    <th class="text-center farsi-font">محل برگزاری</th>
+                    <th class="text-center farsi-font">گزارش خرید</th>
+                    <th class="text-center farsi-font">عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for event in events %}
                     <tr>
-                        <td class="text-center"><a href="/my-admin/tickets/{{ event.id }}/" class="btn btn-default" >{{event.id}}</a></td>
-                        <td class="text-center">{{event.name}}</td>
-                        <td class="text-center">{{event.date}}</td>
-                        <td class="text-center">{{event.deadline}}</td>
-                        <td class="text-center">{{event.ticket_num}}</td>
-                        <td class="text-center">{{event.ticket_price}}</td>
-                        <td class="text-center">{{event.rate}}</td>
-                        <td class="text-center">{{event.place}}</td>
-                        <td class="text-center"><a href="/my-admin/buys/{{ event.id }}/" class="btn btn-success">Buy Report</a></td>
-                        <td class="text-center"><a href="/events-delete/{{ event.id }}/" class="btn btn-danger" >Delete</a><a href="/edit-event/{{ event.id }}/" class="btn btn-primary" >Edit</a></td>
+                        <td class="text-center farsi-font"><a href="/my-admin/tickets/{{ event.id }}/" class="btn btn-default" >{{event.id}}</a></td>
+                        <td class="text-center farsi-font">{{event.name}}</td>
+                        <td class="text-center farsi-font">{{event.date}}</td>
+                        <td class="text-center farsi-font">{{event.deadline}}</td>
+                        <td class="text-center farsi-font">{{event.ticket_num}}</td>
+                        <td class="text-center farsi-font">{{event.ticket_price}}</td>
+                        <td class="text-center farsi-font">{{event.rate}}</td>
+                        <td class="text-center farsi-font">{{event.place}}</td>
+                        <td class="text-center farsi-font"><a href="/my-admin/buys/{{ event.id }}/" class="btn btn-success">گزارش خرید</a></td>
+                        <td class="text-center farsi-font"><a href="/events-delete/{{ event.id }}/" class="btn btn-danger" >حذف</a> <a href="/edit-event/{{ event.id }}/" class="btn btn-primary" >ویرایش</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

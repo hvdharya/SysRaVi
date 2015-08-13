@@ -84,10 +84,11 @@ def edit_see(request, username):
     myUser = User.objects.filter(user = djangoUser)
     buys = Buy.objects.filter(user=myUser)
     buyid = buys.values_list('id')
-    for i in range(len(buyid)):
-        event=(Ticket.objects.filter(buy=buys[i])).values_list('event')
-    for i in range(len(event)):
-        names = event[i]
+    if len(buys) != 0:
+        for i in range(len(buyid)):
+            event=(Ticket.objects.filter(buy=buys[i])).values_list('event')
+        for i in range(len(event)):
+            names = event[i]
     address = myUser.values_list('address',flat=True)
     gender = myUser.values_list('gender',flat=True)
     tel = myUser.values_list('phone_num',flat=True)
