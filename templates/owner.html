@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body %}
+    <style>
+        body { background-color: #c5c5c5; }
+    </style>
+    <section style="padding-top:60px;padding-bottom: 30%;padding-left: 70px">
+        <div class="container thumbnail">
+            <h2 class="farsi-font" >مدیر رویداد</h2>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th class="text-center farsi-font">اضافه کردن رویداد</th>
+                    <th class="text-center farsi-font">حذف/ویرایش/مشاهده</th>
+                    <th class="text-center farsi-font">تنظیمات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-center"> <div class="dropdown farsi-font">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            افزودن رویداد
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            {% for type in types %}
+                                <li><a href="/event-add/{{ type.id }}/">{{ type.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div></td>
+                    <td class="text-center farsi-font"><a href="/events/" class="btn btn-default">مشاهده رویدادها</a></td>
+                    <td class="text-center farsi-font"><a href="/user/{{ id }}/" class="btn btn-default">تنظیمات</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock body %}
