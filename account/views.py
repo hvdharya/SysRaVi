@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from event.views import eventsType
 # Create your views here.
 
-@permission_required('request.is_staff')
+@permission_required('asdf')
 def allUsers(request):
     user = models.User.objects.all()
     is_signed_in = request.user.is_authenticated()

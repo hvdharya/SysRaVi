@@ -28,6 +28,7 @@
                     <th class="text-center farsi-font">قیمت بلیت ها</th>
                     <th class="text-center farsi-font">امتیاز رویداد</th>
                     <th class="text-center farsi-font">محل برگزاری</th>
+                    <th class="text-center farsi-font">رویداد گذار</th>
                     <th class="text-center farsi-font">گزارش خرید</th>
                     <th class="text-center farsi-font">عملیات</th>
                 </tr>
@@ -43,6 +44,12 @@
                         <td class="text-center farsi-font">{{event.ticket_price}}</td>
                         <td class="text-center farsi-font">{{event.rate}}</td>
                         <td class="text-center farsi-font">{{event.place}}</td>
+                        {% if  event.owner == None %}
+                        <td class="text-center farsi-font">ADMIN</td>
+                        {% endif %}
+                        {% if event.owner != None %}
+                        <td class="text-center farsi-font">{{event.owner.user.username}}</td>
+                        {% endif %}
                         <td class="text-center farsi-font"><a href="/my-admin/buys/{{ event.id }}/" class="btn btn-success">گزارش خرید</a></td>
                         <td class="text-center farsi-font"><a href="/events-delete/{{ event.id }}/" class="btn btn-danger" >حذف</a> <a href="/edit-event/{{ event.id }}/" class="btn btn-primary" >ویرایش</a></td>
                     </tr>

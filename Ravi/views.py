@@ -89,8 +89,11 @@ def adminSetting(request):
 
 def profile(request,id):
 
+    djangoUser = models.User.objects.filter(id=id)
+    usern = User.objects.filter(user=djangoUser)
+    events = Event.objects.filter(owner=usern)
     types = Type.objects.all()
-    return render(request,'owner.html',{'id':id,'types':types})
+    return render(request,'owner.html',{'id':id,'types':types,'events':events})
 
 
 def edit_see(request,id):
@@ -101,12 +104,12 @@ def edit_see(request,id):
     myUser = User.objects.filter(user = djangoUser)
     buys = Buy.objects.filter(user=myUser)
     buyid = buys.values_list('id')
-    usertype = myUser.values_list('userType')[0][0]
     if len(buys) != 0:
         for i in range(len(buyid)):
             event=(Ticket.objects.filter(buy=buys[i])).values_list('event')
         for i in range(len(event)):
             names = event[i]
+    types1 = Type.objects.all()
     address = myUser.values_list('address',flat=True)
     gender = myUser.values_list('gender',flat=True)
     tel = myUser.values_list('phone_num',flat=True)
@@ -114,7 +117,7 @@ def edit_see(request,id):
     pic = myUser.values_list('avatar',flat=True)
     name = djangoUser.values_list('first_name',flat=True)
     lastname = djangoUser.values_list('last_name',flat=True)
-
+    usertype = myUser.values_list('userType')
     if request.method == 'POST':
         if not request.POST.get('tel') == "":
             User.objects.filter(user=djangoUser).update(phone_num=request.POST.get('tel'))
@@ -123,15 +126,16 @@ def edit_see(request,id):
         if not request.POST.get('file-4[]') == "":
             User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
         if not request.POST.get('name') == "":
-            models.User.objects.filter(username=username).update(first_name=request.POST.get('name'))
+            models.User.objects.filter(username=usern).update(first_name=request.POST.get('name'))
         if not request.POST.get('lastname') == "":
-            models.User.objects.filter(username=username).update(last_name=request.POST.get('lastname'))
+            models.User.objects.filter(username=usern).update(last_name=request.POST.get('lastname'))
         if not request.POST.get('mail') == "":
-            models.User.objects.filter(username=username).update(email=request.POST.get('mail'))
-
+            models.User.objects.filter(username=usern).update(email=request.POST.get('mail'))
+        if not request.POST.get('usertype') == "":
+            User.objects.filter(user=djangoUser).update(userType=request.POST.get('usertype'))
     return render(request, 'profile_edit.html',
                   {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0],
                    'tel':tel[0], 'name':name[0], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
-                   'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype}
+                   'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0]}
                   )
 

@@ -18,17 +18,17 @@
                 <div class="col-xs-3" style="float: right;">
                     <div class="form-group">
                         <label for="event_daste">:دسته رویداد</label>
-                        <input type="text" class="form-control" name="event_daste" value= {{event.type}} disabled>
+                        <input type="text" class="form-control" name="event_daste" value="{{event.type}}" disabled>
                         <label for="event_name">:نام رویداد</label>
-                        <input type="text" class="form-control" name="event_name" value={{ event.name }}>
+                        <input type="text" class="form-control" name="event_name" placeholder="{{ event.name }}">
                         <label for="genre">زیر دسته رویداد</label>
-                        <input type="text" class="form-control" name="subtype" value={{ event.sub_type }} disabled>
+                        <input type="text" class="form-control" name="subtype" placeholder="{{ event.sub_type }}" disabled>
                         <label for="event_place">:نام محل برگزاری</label>
-                        <input type="text" class="form-control" name="event_place" placeholder={{ event.place }}>
+                        <input type="text" class="form-control" name="event_place" placeholder="{{ event.place }}">
                         <label for="event_ticket">:تعداد بلیت</label>
-                        <input type="text" class="form-control" name="event_ticket"placeholder={{ event.ticket_num }}>
+                        <input type="text" class="form-control" name="event_ticket"placeholder="{{ event.ticket_num }}">
                         <label for="event_price">:قیمت بلیت</label>
-                        <input type="text" class="form-control" name="event_price" placeholder={{ event.ticket_price }}>
+                        <input type="text" class="form-control" name="event_price" placeholder="{{ event.ticket_price }}">
                         <label for="event_datestart">شروع رویداد</label>
                         <br>
                         <script>
@@ -36,7 +36,7 @@
                                 $( "#datepicker" ).datepicker();
                             });
                         </script>
-                        <input type="text" id="datepicker" name="datepicker" placeholder={{ date}}>
+                        <input type="text" id="datepicker" name="datepicker" placeholder="{{ date}}">
                         <br>
                         <label for="event_date">تاریخ اتمام خرید بلیت</label>
                         <br>
@@ -45,13 +45,13 @@
                                 $( "#datepicker1" ).datepicker();
                             });
                         </script>
-                        <input type="text" id="datepicker1" name="datepicker1" placeholder={{ deadline}}>
+                        <input type="text" id="datepicker1" name="datepicker1" placeholder="{{ deadline}}">
                     </div>
                 </div>
                 <div class="col-xs-5" style="float: right;">
                     <div class="form-group">
                         <label for="event_address">:نشانی محل برگزاری</label>
-                        <input type="text" class="form-control" name="event_addr" placeholder={{ event.address }}>
+                        <input type="text" class="form-control" name="event_addr" placeholder="{{ event.address }}">
                         <br>
                         <label for="event_info"name="info">:توضیحات</label>
                         <textarea class="form-control" rows="5" name="info"></textarea>
