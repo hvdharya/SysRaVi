@@ -76,6 +76,7 @@ class Event(models.Model):
     address = models.CharField(max_length=200)
     ticket_price = models.CharField(max_length=8)
     rate = models.IntegerField()
+    owner = models.ForeignKey('account.User',null=True)
 
 
 

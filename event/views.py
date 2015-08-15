@@ -170,6 +170,8 @@ def delete_events(request,event_id):
 def create_event(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
+    djangouser = models.User.objects.filter(username=user.username)
+    myuser = User.objects.filter(user=djangouser)[0]
     type1 = Type.objects.filter(id=id)
     typename=type1.values_list('name')[0][0]
     subs = Subtype.objects.filter(type=type1)
@@ -186,7 +188,7 @@ def create_event(request,id):
         address = request.POST['event_addr']
         ticket_price = request.POST['event_price']
         duration = '2.0'
-        event = Event(name=name,picture=picture,ticket_num=ticket_num,desc=desc,date=date,deadline=deadline,place=place,type=type,sub_type=sub_type,address=address,ticket_price=ticket_price,duration=duration, rate=0)
+        event = Event(name=name,picture=picture,ticket_num=ticket_num,desc=desc,date=date,deadline=deadline,place=place,type=type,sub_type=sub_type,address=address,ticket_price=ticket_price,duration=duration, rate=0,user=myuser[0])
         event.save()
         for i in range(int(ticket_num)):
             ticket = Ticket(price=ticket_price,type='Normal',seat_num=i,event=event,buy=None,free=0)

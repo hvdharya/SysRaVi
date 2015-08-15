@@ -82,7 +82,6 @@ def events(request, e_type):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     types1 = Type.objects.all()
-    type2 = types1.filter(name='cinema')
     subtype1 = Subtype.objects.filter(type=type2)
     if e_type == 'all':
         allEvents = Event.objects.all()

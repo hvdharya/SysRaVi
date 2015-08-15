@@ -27,11 +27,50 @@
                             {% endfor %}
                         </ul>
                     </div></td>
-                    <td class="text-center farsi-font"><a href="/events/" class="btn btn-default">مشاهده رویدادها</a></td>
+                    <td class="text-center farsi-font"><button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal3">لیست رویدادها</button></td>
                     <td class="text-center farsi-font"><a href="/user/{{ id }}/" class="btn btn-default">تنظیمات</a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </section>
+
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title farsi-font" id="myModalLabel">لیست خریدها</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="text-center farsi-font"></th>
+                            <th class="text-center farsi-font">نام رویداد</th>
+                            <th class="text-center farsi-font">دسته رویداد </th>
+                            <th class="text-center farsi-font">زیر دسته رویداد</th>
+                            <th class="text-center farsi-font">تاریخ شروع</th>
+                            <th class="text-center farsi-font">تاریخ اتمام</th>
+                            <th class="text-center farsi-font">رجوع</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for event in events %}
+                            <tr>
+                                <td class="text-center farsi-font"><span class="glyphicon glyphicon-star"></span></td>
+                                <td class="text-center farsi-font">{{event.name}}</td>
+                                <td class="text-center farsi-font">{{event.type}}</td>
+                                <td class="text-center farsi-font">{{event.sub_type}}</td>
+                                <td class="text-center farsi-font">{{event.date}}</td>
+                                <td class="text-center farsi-font">{{event.deadline}}</td>
+                                <td class="text-center farsi-font"><a href="/event/{{ event.id }}">{{event.name}}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock body %}

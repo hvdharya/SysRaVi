@@ -4,8 +4,6 @@
     {% load staticfiles %}
     <script src={% static "js/jquery-1.11.3.min.js"%}></script>
     <script  src={% static "js/bootstrap.min.js" %}></script>
-    <link rel="stylesheet" href={% static "css/admin.css" %}>
-    <link rel="stylesheet" href={% static "css/main.css" %}>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -49,6 +47,10 @@
                         <input type="number" class="form-control" name="tel" placeholder={{ tel }}>
                         <label>نشانی محل سکونت</label>
                         <input type="text" class="form-control" name="addr" placeholder={{ addr }}>
+                        {% if admin %}
+                            <label class="farsi-font">نوع کاربر</label>
+                            <input type="text" class="form-control" name="usertype" placeholder={{ usertype }}>
+                        {% endif %}
                         <br>
                         <br>
                         <input type="submit" class="btn btn-info" value="به روز رسانی تغییرات">
@@ -71,10 +73,12 @@
                             <input type="submit" class="btn btn-info" value="تغییر رمز عبور">
                             <br>
                             <br>
-                            <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal2">
-                                لیست خرید
-                            </button>
-                            <a href="/cart/" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            {% if usertype != "owner" %}
+                                <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal2">
+                                    لیست خرید
+                                </button>
+                                <a href="/cart/" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            {% endif %}
                         </div>
                     </form>
                 </div>
@@ -93,9 +97,9 @@
                             <thead>
                             <tr>
                                 <th class="text-center"></th>
-                                <th class="text-center">Trace ID</th>
-                                <th class="text-center">Purchase ID</th>
-                                <th class="text-center">Event Name</th>
+                                <th class="text-center">شناسه رهگیری</th>
+                                <th class="text-center">شناسه خرید</th>
+                                <th class="text-center">رویداد</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -117,6 +121,4 @@
 
     </div>
     </div>
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
 {% endblock body %}

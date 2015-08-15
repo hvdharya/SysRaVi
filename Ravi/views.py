@@ -87,15 +87,21 @@ def adminSetting(request):
                    'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in}
                   )
 
+def profile(request,id):
 
-def edit_see(request, username):
+    types = Type.objects.all()
+    return render(request,'owner.html',{'id':id,'types':types})
+
+
+def edit_see(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
-    djangoUser = models.User.objects.filter(id=username)
+    djangoUser = models.User.objects.filter(id=id)
     usern = djangoUser.values_list('username')[0]
     myUser = User.objects.filter(user = djangoUser)
     buys = Buy.objects.filter(user=myUser)
     buyid = buys.values_list('id')
+    usertype = myUser.values_list('userType')[0][0]
     if len(buys) != 0:
         for i in range(len(buyid)):
             event=(Ticket.objects.filter(buy=buys[i])).values_list('event')
@@ -126,6 +132,6 @@ def edit_see(request, username):
     return render(request, 'profile_edit.html',
                   {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0],
                    'tel':tel[0], 'name':name[0], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
-                   'admin':is_admin, 'guest': not is_signed_in}
+                   'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype}
                   )
 
