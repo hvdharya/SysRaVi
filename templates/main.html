@@ -41,7 +41,7 @@
                                     <h4 class="farsi-font">تاریخ {{ event.date }}</h4>
                                 </div>
                                 {% if not admin %}
-                                    <a href="" class="pull-left btn btn-success buy">خرید</a>
+                                    <a href="/event/{{ event.id }}" class="pull-left btn btn-success buy">خرید</a>
                                 {% endif %}
                                 {% if admin %}
                                     <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>

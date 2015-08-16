@@ -43,7 +43,7 @@
                                         {% endfor %}
                                         <span class="price"> {{ event.price }}</span>
                                         {% if not admin %}
-                                            <a href="" class="pull-left btn btn-success buy">خرید</a>
+                                            <a href="/event/{{ event.id }}" class="pull-left btn btn-success buy">خرید</a>
                                         {% endif %}
                                         {% if admin %}
                                             <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>

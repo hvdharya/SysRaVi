@@ -10,30 +10,33 @@
         <div class="panel panel-default farsi-font" style="font-size: 18px;background-color:ghostwhite;">
             <div style="text-align: center;" class="panel-heading"><h3 class="farsi-font">سبد خرید</h3></div>
             <div class="panel-body">
-                <table class="table table-bordered table-condensed">
-                    <thead>
-                    <tr>
-                        <th class="text-center">کاربر</th>
-                        <th class="text-center">رویداد</th>
-                        <th class="text-center">تعداد بلیت</th>
-                        <th class="text-center">قیمت کل</th>
-                        <th class="text-center">حذف</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for cart in carts %}
+                <form role="form" action="/cart/" method="post">{% csrf_token %}
+                    <table class="table table-bordered table-condensed">
+                        <thead>
                         <tr>
-                            <td class="text-center"><a href="/user/{{ cart.user.user_id }}/">{{ cart.user.user.username }}</a></td>
-                            <td class="text-center"><a href="/event/{{ cart.event.name }}">{{ cart.event.name }}</a></td>
-                            <td class="text-center">{{ cart.number }}</td>
-                            <td class="text-center">{{ cart.event.ticket_price }}</td>
-                            <td class="text-center"><a href="#" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            <th class="text-center">کاربر</th>
+                            <th class="text-center">رویداد</th>
+                            <th class="text-center">تعداد بلیت</th>
+                            <th class="text-center">قیمت هر بلیت</th>
+                            <th class="text-center">حذف</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <label class="farsi-font">قیمت کل</label>: <input type="text" value="" disabled>
-                <input type="submit"class="btn btn-sm btn-success farsi-font" value="خرید">
+                        </thead>
+                        <tbody>
+                        {% for cart in carts %}
+                            <tr>
+                                <td class="text-center"><a href="/user/{{ cart.user.user_id }}/">{{ cart.user.user.username }}</a></td>
+                                <td class="text-center"><a href="/event/{{ cart.event.name }}">{{ cart.event.name }}</a></td>
+                                <td class="text-center"><input type="number" style="max-width: 40px;" name="{{ cart.event.id }}" placeholder="{{ cart.number }}"></td>
+                                <td class="text-center">{{ cart.event.ticket_price }}</td>
+                                <td class="text-center"><a href="#" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <label class="farsi-font">قیمت کل</label>: <input type="text" value="{{ totalprice }}" disabled>
+                    <input type="submit"class="btn btn-sm btn-success farsi-font" value="به روز رسانی">
+                </form>
+            <a href="" class="btn btn-info">Buy</a>
             </div>
         </div>
     </div>

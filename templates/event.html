@@ -19,7 +19,7 @@
             <div class="col-md-9" style="float: right;">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="../static/images/{{ event.picture}}" height="300" width="800" alt="">
+                    <img class="img-responsive" src="/static/images/{{ event.picture}}" height="300" width="800" alt="">
                     <div class="caption-full" style="text-align: right;">
                         <h4 class="pull-left farsi-font">{{ event.price }}</h4>
                         <h3 class="farsi-font">{{ event.name }}</h3>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="ratings" style="text-align: right;">
                         <div style="float: left;">
-                            <a href="/addtocart/5/{{ event.name }}/" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> سبد خرید </a>
+                            <a href="/addtocart/{{ event.id }}/" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> سبد خرید </a>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
                                 نهایی کردن خرید
 

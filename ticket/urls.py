@@ -4,5 +4,5 @@ from ticket.views import buy,add_to_cart
 
 urlpatterns = patterns('',
                        url(r'^([0-9]+)/([0-9]+)', buy),
-                       url(r'^([0-9]+)/([a-zA-Z]+)', add_to_cart),
+                       url(r'^([0-9]+)/', add_to_cart),
                        )
