@@ -61,7 +61,9 @@ def show_cart(request):
     user = models.User.objects.filter(id=id)
     user = User.objects.filter(user=user)
     cart_list = Cart.objects.filter(user = user)
-    totalprice = 0
+    totalprice = 0;
+    for i in range(len(cart_list)):
+        totalprice = totalprice + float(cart_list[i].event.ticket_price) * float(cart_list[i].number)
     if request.method == 'POST':
         for i in range(len(cart_list)):
             strname = str(cart_list[i].event.id)
