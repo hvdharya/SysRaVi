@@ -40,15 +40,13 @@ def eventDetailedView(request, event_id):
         comment = request.POST.get("comment")
         Event.objects.filter(id=event_id).update(rate=rate)
         rate = int(rate)
-        feedback = Feedback()
-        feedback.rate = rate
-        feedback.comment = comment
-        feedback.user = request.user
-        feedback.event = myEvent
+        djuser=models.User.objects.filter(username=username)
+        user1 = User.objects.filter(user=djuser)[0]
+        feedback = Feedback(rate=rate,comment=comment,user=user1,event=myEvent)
         feedback.save()
-        print(feedback)
+        print(feedback.comment)
 
-        return render(request, 'event.html', {
+    return render(request, 'event.html', {
         'guest': not is_signed_in,
         'signed_in': is_signed_in,
         'admin': is_admin,

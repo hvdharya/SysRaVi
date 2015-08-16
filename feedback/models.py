@@ -6,7 +6,7 @@ from event.models import Event
 class Feedback(models.Model):
 
     rate = models.IntegerField()
-    comment = models.CharField(max_length=160)
+    comment = models.CharField(max_length=160,null=True)
 
     user = models.ForeignKey(User,unique=False)
     event = models.ForeignKey(Event,unique=False)

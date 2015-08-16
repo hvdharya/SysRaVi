@@ -32,6 +32,6 @@ class Buy(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey('account.User')
-    event = models.ForeignKey('event.Event')
+    user = models.ForeignKey('account.User',unique=False)
+    event = models.ForeignKey('event.Event',unique=False)
     number = models.IntegerField()

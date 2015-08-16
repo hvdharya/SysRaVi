@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'account',
     'event',
     'ticket',
+    'feedback'
 
 
 )
