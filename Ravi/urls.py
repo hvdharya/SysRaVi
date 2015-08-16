@@ -33,7 +33,7 @@ urlpatterns = patterns('',
     url(r'^users/all/',allUsers),
     url(r'^users-delete/([0-9]+)',delUsers),
     url(r'^tickets-delete/([a-zA-Z0-9]+)/', delete_tickets),
-    url(r'^profile/([0-9]+)', views.profile),
+    url(r'^profile/$', views.profile),
     url(r'^event-add/([0-9]+)', create_event),
 )
 

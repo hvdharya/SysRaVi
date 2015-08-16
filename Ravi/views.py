@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response,redirect
 from account.models import User
 from django.contrib.auth import models
 from event.models import Event,Type
@@ -87,13 +87,20 @@ def adminSetting(request):
                    'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in}
                   )
 
-def profile(request,id):
+def profile(request):
 
-    djangoUser = models.User.objects.filter(id=id)
-    usern = User.objects.filter(user=djangoUser)
-    events = Event.objects.filter(owner=usern)
-    types = Type.objects.all()
-    return render(request,'owner.html',{'id':id,'types':types,'events':events})
+    id = request.user.id
+    if id != 1:
+        djangoUser = models.User.objects.filter(id=id)
+        usern = User.objects.filter(user=djangoUser)
+        if usern.values_list('userType')[0][0] == "owner":
+            events = Event.objects.filter(owner=usern)
+            types = Type.objects.all()
+            return render(request,'owner.html',{'id':id,'types':types,'events':events})
+        else:
+            return edit_see(request,id)
+    else:
+        return redirect('')
 
 
 def edit_see(request,id):

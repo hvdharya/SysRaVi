@@ -8,5 +8,5 @@ class Feedback(models.Model):
     rate = models.IntegerField()
     comment = models.CharField(max_length=160)
 
-    user = models.ForeignKey(User)
-    event = models.ForeignKey(Event)
+    user = models.ForeignKey(User,unique=False)
+    event = models.ForeignKey(Event,unique=False)

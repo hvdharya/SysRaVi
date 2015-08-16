@@ -4,9 +4,9 @@
     <link href={%  static "css/shop-item.css"%} rel="stylesheet">
     <link href={%  static "css/main.css"%} rel="stylesheet">
     <div class="container farsi-font">
-    <style>
-        body { background-color: lavender; }
-    </style>
+        <style>
+            body { background-color: lavender; }
+        </style>
         <div class="row" >
             <div class="col-md-3" style="float: right;">
                 <p class="lead" style="text-align: right;">رویداد</p>
@@ -103,6 +103,16 @@
                             </div>
                         </form>
                     </div>
+
+                    {% for comment in comments %}
+                        <div class="text-right farsi-font">
+                            <div style="text-align: right;">نظر کاربر {{ comment.user.user.username }}</div>
+                            <div class="form-group" style="float: right;">
+                                <label for="comment"></label>
+                                <textarea class="form-control" cols="200" rows="5" readonly>{{ comment.comment }}</textarea>
+                            </div>
+                        </div>
+                    {% endfor %}
 
                 </div>
 

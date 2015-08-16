@@ -5,6 +5,7 @@ from event.models import Event,Type,Subtype
 from ticket.models import Ticket,Buy
 from django.shortcuts import render, redirect
 from account.models import User
+from feedback.models import Feedback
 from django.template import Context
 from django.utils import dateparse
 from django.http import HttpResponseRedirect
@@ -20,19 +21,44 @@ def eventDetailedView(request, event_id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     myEvent = Event.objects.filter(id=event_id)
-    username = models.User.objects.values_list('username')[0][0]
+    username = request.user.username
     newType = myEvent.values_list('type')[0][0]
     rate = myEvent.values_list('rate')[0][0]
     notrate = 5-rate
     myEvent = myEvent[0]
+    feedbacks = Feedback.objects.filter(event = myEvent)
+    counter = 0
+    sum = 0
+    for feed in feedbacks:
+        counter+=1
+        sum += feed.rate
+        rate = (int) (sum / counter)
+
 
     if request.method == "POST":
         rate = request.POST.get("rate")
-        print(rate)
+        comment = request.POST.get("comment")
         Event.objects.filter(id=event_id).update(rate=rate)
         rate = int(rate)
+        feedback = Feedback()
+        feedback.rate = rate
+        feedback.comment = comment
+        feedback.user = request.user
+        feedback.event = myEvent
+        feedback.save()
+        print(feedback)
 
-    return render(request, 'event.html', {'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'type':newType, 'event': myEvent, 'rate': range(rate), 'notrange':range(notrate),'username':username})
+        return render(request, 'event.html', {
+        'guest': not is_signed_in,
+        'signed_in': is_signed_in,
+        'admin': is_admin,
+        'type':newType,
+        'event': myEvent,
+        'rate': range(rate),
+        'notrange':range(notrate),
+        'username':username,
+        'comments': feedbacks,
+    })
 
 
 def addType(request):
