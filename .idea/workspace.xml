@@ -4,10 +4,7 @@
     <list default="true" id="bc07e688-59d7-4f6e-9590-82507d3ab2ca" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/event.html" afterPath="$PROJECT_DIR$/templates/event.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ticket/models.py" afterPath="$PROJECT_DIR$/ticket/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ravi/settings.py" afterPath="$PROJECT_DIR$/Ravi/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Ravi.iws" />
@@ -42,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="event.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="event.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/event.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59090906" vertical-offset="1428" max-vertical-offset="2295">
-              <caret line="97" column="48" selection-start-line="97" selection-start-column="48" selection-end-line="97" selection-end-column="48" />
+            <state vertical-scroll-proportion="-12.423077" vertical-offset="323" max-vertical-offset="2363">
+              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -63,6 +60,16 @@
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.30749354" vertical-offset="1224" max-vertical-offset="1853">
+              <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -149,7 +156,6 @@
         <option value="$PROJECT_DIR$/templates/users.html" />
         <option value="$PROJECT_DIR$/templates/virayesh.html" />
         <option value="$PROJECT_DIR$/templates/admin.html" />
-        <option value="$PROJECT_DIR$/templates/main.html" />
         <option value="$PROJECT_DIR$/templates/subtypes.html" />
         <option value="$PROJECT_DIR$/ticket/urls.py" />
         <option value="$PROJECT_DIR$/account/urls.py" />
@@ -162,8 +168,9 @@
         <option value="$PROJECT_DIR$/Ravi/settings.py" />
         <option value="$PROJECT_DIR$/ticket/models.py" />
         <option value="$PROJECT_DIR$/feedback/models.py" />
-        <option value="$PROJECT_DIR$/templates/event.html" />
         <option value="$PROJECT_DIR$/event/views.py" />
+        <option value="$PROJECT_DIR$/templates/event.html" />
+        <option value="$PROJECT_DIR$/templates/main.html" />
       </list>
     </option>
   </component>
@@ -678,7 +685,13 @@
       <option name="project" value="LOCAL" />
       <updated>1439752494677</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Commenting Improved">
+      <created>1439756336059</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1439756336059</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -757,7 +770,8 @@
     <MESSAGE value="Eslahe Zaheri va Taghir dar moshahede daste ha dar my-admin" />
     <MESSAGE value="Shopping Cart has been corrected" />
     <MESSAGE value="Commenting has been Implemented, But the database has to be removed first.&#10;(To add feed model to the database the current database has to be removed)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commenting has been Implemented, But the database has to be removed first.&#10;(To add feed model to the database the current database has to be removed)" />
+    <MESSAGE value="Commenting Improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commenting Improved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1003,14 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6692506" vertical-offset="0" max-vertical-offset="1785">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/events.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.005167959" vertical-offset="117" max-vertical-offset="1190">
@@ -1165,8 +1171,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/event.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59090906" vertical-offset="1428" max-vertical-offset="2295">
-          <caret line="97" column="48" selection-start-line="97" selection-start-column="48" selection-end-line="97" selection-end-column="48" />
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="323" max-vertical-offset="2363">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1183,6 +1189,14 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30749354" vertical-offset="1224" max-vertical-offset="1853">
+          <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
