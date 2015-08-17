@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc07e688-59d7-4f6e-9590-82507d3ab2ca" name="Default" comment="Shopping Cart, Total Price is now corrected">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/event.html" afterPath="$PROJECT_DIR$/templates/event.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/events_admin.html" afterPath="$PROJECT_DIR$/templates/events_admin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main.html" afterPath="$PROJECT_DIR$/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feedback/models.py" afterPath="$PROJECT_DIR$/feedback/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/my-admin.html" afterPath="$PROJECT_DIR$/templates/my-admin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/owner.html" afterPath="$PROJECT_DIR$/templates/owner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ravi/settings.py" afterPath="$PROJECT_DIR$/Ravi/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ravi/urls.py" afterPath="$PROJECT_DIR$/Ravi/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/urls.py" afterPath="$PROJECT_DIR$/account/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/users.html" afterPath="$PROJECT_DIR$/templates/users.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ravi/views.py" afterPath="$PROJECT_DIR$/Ravi/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/views.py" afterPath="$PROJECT_DIR$/account/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ticket/views.py" afterPath="$PROJECT_DIR$/ticket/views.py" />
+    <list default="true" id="bc07e688-59d7-4f6e-9590-82507d3ab2ca" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\Files\CE-Term6\Systems Analysis and Design\SAD\SysRaVi\templates\cinema.html" afterPath="$PROJECT_DIR$/templates/Search.html" />
     </list>
     <ignored path="Ravi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -753,7 +736,13 @@
       <option name="project" value="LOCAL" />
       <updated>1439762912521</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Bug haye daftar raf shod">
+      <created>1439822385919</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1439822385919</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -835,7 +824,8 @@
     <MESSAGE value="Commenting Improved" />
     <MESSAGE value="guests cannot buy,add to cart,comment,rate" />
     <MESSAGE value="Shopping Cart, Total Price is now corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="Shopping Cart, Total Price is now corrected" />
+    <MESSAGE value="Bug haye daftar raf shod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug haye daftar raf shod" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
