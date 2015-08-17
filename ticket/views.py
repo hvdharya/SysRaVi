@@ -17,12 +17,21 @@ def buy(request,userid,eventid):
         myUser=models.User.objects.filter(id=userid)
         user = User.objects.get(user=myUser)
         event = Event.objects.get(id=eventid)
+        avail = event.available_tickets
+        if int(numberoftickets) >= avail:
+            numberoftickets = avail
+        else:
+            avail = avail - int(numberoftickets)
+        Event.objects.filter(id=eventid).update(available_tickets=avail)
         mytick = Ticket.objects.filter(event=event,free=0)
         availticks = mytick.values_list('id')
-    for i in range(int(numberoftickets)):
-        myBuy = Buy(user=user,event=event,date='2015-07-08',purchase_id=purchasecode,trace_id=traceid)
-        myBuy.save()
-        Ticket.objects.filter(id=availticks[i][0]).update(free=1,buy=myBuy)
+    try:
+        for i in range(int(numberoftickets)):
+            myBuy = Buy(user=user,event=event,date='2015-07-08',purchase_id=purchasecode,trace_id=traceid)
+            myBuy.save()
+            Ticket.objects.filter(id=availticks[i][0]).update(free=1,buy=myBuy)
+    except:
+        pass
 
     return redirect('/main/')
 

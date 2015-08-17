@@ -77,7 +77,7 @@ class Event(models.Model):
     ticket_price = models.CharField(max_length=8)
     rate = models.IntegerField()
     owner = models.ForeignKey('account.User',null=True)
-
+    available_tickets = models.IntegerField()
 
 
     def __str__(self):

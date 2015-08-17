@@ -9,7 +9,7 @@
 
     <section style="padding-top: 70px; padding-bottom: 10%;padding-left: 30%;padding-right: 30%;">
     <div class="thumbnail" style="margin-top: 30px">
-        <form class="form" action="/buy/{{ userid }}/{{ eventid }}/">
+        <form class="form" action="/buy/{{ userid }}/{{ eventid }}/" method="post">{% csrf_token %}
             <div class="form-group-sm">
                 <h4 class="dividing header farsi-font">اطلاعات خرید</h4>
                 <br />
@@ -41,6 +41,7 @@
                     <br />
                 </div>
                 <br />
+                <input type="text" hidden="hidden" value="{{ ticket_num }}" name="ticket_num">
                 <input class="btn btn-primary btn-md farsi-font" type="submit" value="پرداخت">
                 <input class="btn btn-default btn-md farsi-font" type="submit" value="انصراف">
             </div>

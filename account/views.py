@@ -121,7 +121,8 @@ def portal(request,eventid):
     price = Event.objects.filter(id=eventid).values_list('ticket_price')
     if request.method == 'POST':
         total = request.POST.get("ticket_num")
+        number = total
         total = (int(total))*(int(price[0][0]))
 
-    return render(request,'buy.html',{'total':total,'userid':userid,'eventid':eventid})
+    return render(request,'buy.html',{'total':total,'userid':userid,'eventid':eventid,'ticket_num':number})
 

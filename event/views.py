@@ -21,6 +21,7 @@ def eventDetailedView(request, event_id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     myEvent = Event.objects.filter(id=event_id)
+    available = myEvent.values_list('available_tickets')[0][0]
     username = request.user.username
     newType = myEvent.values_list('type')[0][0]
     rate = myEvent.values_list('rate')[0][0]
@@ -62,6 +63,7 @@ def eventDetailedView(request, event_id):
         'notrange':range(notrate),
         'username':username,
         'comments': feedbacks,
+        'tickets': available
         })
 
 
@@ -222,7 +224,7 @@ def create_event(request,id):
         address = request.POST['event_addr']
         ticket_price = request.POST['event_price']
         duration = '2.0'
-        event = Event(name=name,picture=picture,ticket_num=ticket_num,desc=desc,date=date,deadline=deadline,place=place,type=type,sub_type=sub_type,address=address,ticket_price=ticket_price,duration=duration, rate=0,owner=myuser)
+        event = Event(name=name,picture=picture,ticket_num=ticket_num,desc=desc,date=date,deadline=deadline,place=place,type=type,sub_type=sub_type,address=address,ticket_price=ticket_price,duration=duration, rate=0,owner=myuser,available_tickets=ticket_num)
         event.save()
         for i in range(int(ticket_num)):
             ticket = Ticket(price=ticket_price,type='Normal',seat_num=i,event=event,buy=None,free=0)

@@ -21,6 +21,9 @@ class Ticket(models.Model):
     buy = models.ForeignKey('Buy',null=True)
     free = models.IntegerField()
 
+    def __str__(self):
+        return str(self.id)
+
 
 class Buy(models.Model):
 
