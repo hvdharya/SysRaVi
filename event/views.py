@@ -6,11 +6,7 @@ from ticket.models import Ticket,Buy
 from django.shortcuts import render, redirect
 from account.models import User
 from feedback.models import Feedback
-from django.template import Context
-from django.utils import dateparse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template.context_processors import csrf
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 
 # Create your views here.
@@ -67,6 +63,7 @@ def eventDetailedView(request, event_id):
         })
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def addType(request):
     if request.method == 'POST':
         type=request.POST.get("0")
@@ -91,6 +88,7 @@ def addType(request):
     return redirect('/my-admin/types/all/')
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def delType(request,typename):
     types = Type.objects.filter(id=typename)
     subtype = Subtype.objects.filter(type=types)
@@ -100,6 +98,7 @@ def delType(request,typename):
     return redirect('/my-admin/types/all/')
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def delSubType(request,subtypename):
 
     subtype = Subtype.objects.filter(id=subtypename)
@@ -112,6 +111,7 @@ def delSubType(request,subtypename):
     return redirect(str1)
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def edit_subtype(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -123,6 +123,7 @@ def edit_subtype(request,id):
     return render(request,'edit-sub.html',{'id':id,'sub_type':subtypename,'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin,})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def eventsType(request, e_type):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -138,6 +139,7 @@ def eventsType(request, e_type):
         #     return render(request, 'subtypes.html', {'signed_in':True,'admin': True,'types':types1,'type': e_type, 'events': allEvents})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def ticketmanager(request,eventid):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -149,6 +151,7 @@ def ticketmanager(request,eventid):
                                            'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin,})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def delete_tickets(request,ticketid):
     tick = Ticket.objects.filter(id=ticketid)
     eventid = tick.values_list('eventid')[0][0]
@@ -193,6 +196,7 @@ def subtype (request , id):
                                               'admin': is_admin, 'type':mytype,'subtypes': sub1,'events':allEvents})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def delete_events(request,event_id):
     Event.objects.filter(id=event_id).delete()
     return redirect('/my-admin/events/all/')
@@ -200,6 +204,7 @@ def delete_events(request,event_id):
     # return render(request,'events.html',{'admin':True,'type':'all','events':allEvents})
 
 
+@login_required(redirect_field_name='/', login_url='/')
 def create_event(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -233,6 +238,7 @@ def create_event(request,id):
     return render(request, 'event-adder.html',{'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'id':id,'type':typename,'subtypes':subs})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def showsubs(request,typepid):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -244,6 +250,7 @@ def showsubs(request,typepid):
                                                'signed_in': is_signed_in, 'admin': is_admin})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def edit_event(request, event_id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser

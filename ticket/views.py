@@ -4,7 +4,11 @@ from event.models import Event
 from account.models import User
 from django.db import models
 from django.contrib.auth import models
+from django.contrib.auth.decorators import user_passes_test, login_required
 # Create your views here.
+
+
+@login_required(redirect_field_name='/', login_url='/')
 def buy(request,userid,eventid):
     price = Event.objects.filter(id=eventid).values_list('ticket_price')[0][0]
     purchasecode = str(userid)+str(eventid)+'396'
@@ -36,6 +40,7 @@ def buy(request,userid,eventid):
     return redirect('/main/')
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def buymanager(request,eventid):
 
     events = Event.objects.filter(id=eventid)
@@ -51,7 +56,7 @@ def buymanager(request,eventid):
     return render(request,'buymanager.html',{'buys':buys,'name':name,'admin':True,'signed_in':True})
 
 
-
+@login_required(redirect_field_name='/', login_url='/')
 def add_to_cart(request,eventid):
 
     id = request.user.id
@@ -64,6 +69,7 @@ def add_to_cart(request,eventid):
     return redirect('/main/')
 
 
+@login_required(redirect_field_name='/', login_url='/')
 def show_cart(request):
     id = request.user.id
     user = models.User.objects.filter(id=id)
@@ -83,29 +89,13 @@ def show_cart(request):
         return render(request,'cart.html',{'carts':None,'totalprice':0})
     return render(request, 'cart.html', {'totalprice':totalprice,'carts' : cart_list})
 
-def buy_cart(request):
-    user = request.user
-    cart_list = Cart.objects.filter(user__pk = user.pk)
-    for cart in cart_list:
-        userid = user.id
-        eventid = cart.event.id
-        price = Event.objects.filter(id=eventid).values_list('ticket_price')[0][0]
-        purchasecode = str(userid)+str(eventid)+'396'
-        purchasecode = int(purchasecode)
 
-        if request.method == 'POST':
-            numberoftickets = request.POST.get("ticket_num")
-            traceid = str(userid)+str(eventid)+str(numberoftickets)+str(128)+str(price)
-            traceid = int(traceid)
-            myUser=models.User.objects.filter(id=userid)
-            user = User.objects.get(user=myUser)
-            event = Event.objects.get(id=eventid)
-            mytick = Ticket.objects.filter(event=event,free=0)
-            availticks = mytick.values_list('id')
-            for i in range(int(numberoftickets)):
-                myBuy = Buy(user=user,event=event,date='2015-07-08',purchase_id=purchasecode,trace_id=traceid)
-                myBuy.save()
-                Ticket.objects.filter(id=availticks[i][0]).update(free=1,buy=myBuy)
-
-    return redirect('/main/')
+@login_required(redirect_field_name='/', login_url='/')
+def delete_cart(request, eventid):
+    id = request.user.id
+    djangouser = models.User.objects.filter(id=id)
+    myuser = User.objects.filter(user=djangouser)
+    event = Event.objects.filter(id=eventid)
+    Cart.objects.filter(user=myuser, event=event).delete()
+    return redirect('/cart/')
 

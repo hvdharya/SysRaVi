@@ -2,7 +2,8 @@ from django.shortcuts import render, render_to_response,redirect
 from account.models import User
 from django.contrib.auth import models
 from event.models import Event,Type
-from ticket.models import Buy,Ticket
+from ticket.models import Buy, Ticket
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 
 def mainPage(request):
@@ -29,12 +30,14 @@ def startPage(request):
     return render(request, 'start.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
 
 
+@login_required(redirect_field_name='/', login_url='/')
 def user(request):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     return render(request, 'userProfile.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def modir(request):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -42,16 +45,13 @@ def modir(request):
     return render(request, 'my-admin.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in,'types':types})
 
 
-def add(request):
-    return render(request, 'events_admin.html')
-
-
 def signup(request):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
-    return  render(request,'sign-up.html',{'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
+    return render(request,'sign-up.html',{'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def adminSetting(request):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -87,6 +87,8 @@ def adminSetting(request):
                    'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in}
                   )
 
+
+@login_required(redirect_field_name='/', login_url='/')
 def profile(request):
 
     id = request.user.id
@@ -103,11 +105,14 @@ def profile(request):
         return redirect('')
 
 
+@login_required(redirect_field_name='/', login_url='/')
 def profile_settings(request):
 
     id = request.user.id
     return edit_see(request,id)
 
+
+@login_required(redirect_field_name='/', login_url='/')
 def edit_see(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -150,6 +155,7 @@ def edit_see(request,id):
                    'tel':tel[0], 'name':name[0], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
                    'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0]}
                   )
+
 
 def search_event(request):
     search1 = request.POST.get("search")

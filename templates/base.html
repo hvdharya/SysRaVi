@@ -56,7 +56,7 @@
                             <h4 class="modal-title farsi-font" style="color: #000000" id="myModalLabel">جستجو</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" action="/search/" method="get" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
+                            <form role="form" action="/search/" method="post" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
                                 <div class="form-group">
                                     <label style="color: #000000">جستجو</label>
                                     <input type="search" class="form-control" name="search">

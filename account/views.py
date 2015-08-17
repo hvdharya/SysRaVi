@@ -7,11 +7,11 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 from event.models import Event,Type,Subtype
-from django.contrib.auth.decorators import login_required, permission_required
-from event.views import eventsType
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
-@permission_required('asdf')
+
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def allUsers(request):
     user = models.User.objects.all()
     is_signed_in = request.user.is_authenticated()
@@ -19,12 +19,14 @@ def allUsers(request):
     return render(request, 'users.html', {'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in, 'users': user})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def delUsers(request,userid):
     myUser=models.User.objects.filter(id=userid)
     user = User.objects.filter(user=myUser)
     user.delete()
     myUser.delete()
     return redirect('/my-admin/users/all/')
+
 
 def create_account(request):
     c = {}
@@ -72,6 +74,7 @@ def login_to_site(request):
         return HttpResponse("not registerd")
 
 
+@login_required(redirect_field_name='/', login_url='/')
 def log_out(request):
     logout(request)
     return HttpResponseRedirect('/')
@@ -109,6 +112,7 @@ def eventsall(request):
     return render(request, 'events.html', {'signed_in': is_signed_in,'admin': is_admin, 'guest': not is_signed_in,'types':types1, 'type':'all', 'events': allEvents})
 
 
+@user_passes_test(lambda u: u.is_active and u.is_superuser)
 def types(request):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -116,6 +120,7 @@ def types(request):
     return render(request, 'types.html', {'types':alltypes, 'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in})
 
 
+@login_required(redirect_field_name='/', login_url='/')
 def portal(request,eventid):
     userid = request.user.id
     price = Event.objects.filter(id=eventid).values_list('ticket_price')
