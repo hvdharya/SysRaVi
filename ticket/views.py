@@ -45,12 +45,11 @@ def buymanager(request,eventid):
 
 def add_to_cart(request,eventid):
 
-    # numberoftickets = request.POST.get("ticket_num")
     id = request.user.id
     myUser=models.User.objects.filter(id=id)
     user = User.objects.get(user=myUser)
     event = Event.objects.get(id=eventid)
-    myCart = Cart(user=user,event=event,number=3)
+    myCart = Cart(user=user,event=event,number=0)#needs attention
     myCart.save()
 
     return redirect('/main/')
@@ -67,9 +66,10 @@ def show_cart(request):
     if request.method == 'POST':
         for i in range(len(cart_list)):
             strname = str(cart_list[i].event.id)
-            total = float(request.POST.get(strname)) * float((cart_list[i].event.ticket_price))
-            cart_list[i].number = int(request.POST.get(strname))
-            totalprice = totalprice + total
+            if request.POST.get(strname) is not None:
+                total = float(request.POST.get(strname)) * float((cart_list[i].event.ticket_price))
+                cart_list[i].number = int(request.POST.get(strname))
+                totalprice = totalprice + total
     if cart_list.count() == 0:
         return render(request,'cart.html',{'carts':None,'totalprice':0})
     return render(request, 'cart.html', {'totalprice':totalprice,'carts' : cart_list})

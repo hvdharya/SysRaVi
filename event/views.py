@@ -26,7 +26,7 @@ def eventDetailedView(request, event_id):
     rate = myEvent.values_list('rate')[0][0]
     notrate = 5-rate
     myEvent = myEvent[0]
-    feedbacks = Feedback.objects.filter(event = myEvent)
+    feedbacks = Feedback.objects.filter(event = myEvent).order_by('-id')
     counter = 0
     sum = 0
     for feed in feedbacks:
@@ -38,14 +38,20 @@ def eventDetailedView(request, event_id):
     if request.method == "POST":
         rate = request.POST.get("rate")
         comment = request.POST.get("comment")
+        if comment == '':
+            comment = None
         Event.objects.filter(id=event_id).update(rate=rate)
         rate = int(rate)
-        djuser=models.User.objects.filter(username=username)
-        user1 = User.objects.filter(user=djuser)[0]
-        feedback = Feedback(rate=rate,comment=comment,user=user1,event=myEvent)
-        feedback.save()
-        print(feedback.comment)
-
+        if not is_admin:
+            djuser=models.User.objects.filter(username=username)
+            user1 = User.objects.filter(user=djuser)[0]
+            feedback = Feedback(rate=rate,comment=comment,user=user1,event=myEvent)
+            feedback.save()
+        else:
+            feedback = Feedback(rate=rate,comment=comment,user=None,event=myEvent)
+            feedback.save()
+        feedbacks = Feedback.objects.filter(event = myEvent).order_by('-id')
+        print(feedbacks.values_list('comment'))
     return render(request, 'event.html', {
         'guest': not is_signed_in,
         'signed_in': is_signed_in,
@@ -56,12 +62,13 @@ def eventDetailedView(request, event_id):
         'notrange':range(notrate),
         'username':username,
         'comments': feedbacks,
-    })
+        })
 
 
 def addType(request):
     if request.method == 'POST':
         type=request.POST.get("0")
+    if type != "":
         createtype = Type(type=type,name=type)
         t = Type.objects.filter(name=type);
         t2 = t.values_list('id')
@@ -83,7 +90,7 @@ def addType(request):
 
 
 def delType(request,typename):
-    types = Type.objects.filter(name=typename)
+    types = Type.objects.filter(id=typename)
     subtype = Subtype.objects.filter(type=types)
     subtype.delete()
     types.delete()
@@ -93,7 +100,7 @@ def delType(request,typename):
 
 def delSubType(request,subtypename):
 
-    subtype = Subtype.objects.filter(sub_type=subtypename)
+    subtype = Subtype.objects.filter(id=subtypename)
     type = subtype.values_list('type')
     type = Type.objects.filter(id=type)[0]
     type=str(type)
@@ -137,7 +144,7 @@ def ticketmanager(request,eventid):
     tickets = Ticket.objects.filter(event=eventid)
 
     return render(request,'tickets.html', {'tickets':tickets,'name':eventname, 'id':eventid,
-                                          'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin,})
+                                           'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin,})
 
 
 def delete_tickets(request,ticketid):

@@ -37,7 +37,7 @@
                 {% for event in events %}
                     <tr>
                         <td class="text-center farsi-font"><a href="/my-admin/tickets/{{ event.id }}/" class="btn btn-default" >{{event.id}}</a></td>
-                        <td class="text-center farsi-font">{{event.name}}</td>
+                        <td class="text-center farsi-font"><a href="/event/{{ event.id }}">{{event.name}}</a></td>
                         <td class="text-center farsi-font">{{event.date}}</td>
                         <td class="text-center farsi-font">{{event.deadline}}</td>
                         <td class="text-center farsi-font">{{event.ticket_num}}</td>

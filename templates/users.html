@@ -37,7 +37,7 @@
                             <td class="text-center farsi-font">{{user.first_name}}</td>
                             <td class="text-center farsi-font">{{user.last_name}}</td>
                             <td class="text-center farsi-font">{{user.email}}</td>
-                            <td class="text-center farsi-font"><a href="/users-delete/{{ user.id }}/" class="btn btn-danger" >حذف</a> <a href="/user/{{ user.id }}/" class="btn btn-primary" >ویرایش</a></td>
+                            <td class="text-center farsi-font"><a href="/my-admin/users-delete/{{ user.id }}/" class="btn btn-danger" >حذف</a> <a href="/my-admin/user/{{ user.id }}/" class="btn btn-primary" >ویرایش</a></td>
                         </tr>
                     {% endif %}
                 {% endfor %}

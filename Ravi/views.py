@@ -103,6 +103,11 @@ def profile(request):
         return redirect('')
 
 
+def profile_settings(request):
+
+    id = request.user.id
+    return edit_see(request,id)
+
 def edit_see(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
@@ -146,3 +151,14 @@ def edit_see(request,id):
                    'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0]}
                   )
 
+def search_event(request):
+    search1 = request.POST.get("search")
+    print(search1)
+    is_signed_in = request.user.is_authenticated()
+    is_admin = request.user.is_superuser
+    pattern= r"\b%s\b" %search1
+    # print(pattern)
+    events  = Event.objects.filter(name__regex=search1)
+    print(events)
+
+    return render(request,'Search.html',{'events':events,'signed_in':is_signed_in,'admin':is_admin,'guest':not is_signed_in})

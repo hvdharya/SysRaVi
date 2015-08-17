@@ -32,7 +32,7 @@
                     {% for event in newest_event %}
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <img src="{{ event.picture}}">
+                                <img src="../static/images/radiohead.jpg">
                                 <div class="caption">
                                     {#                                <h4 class="pull-right">$74.99</h4>#}
                                     <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
@@ -68,7 +68,7 @@
                     {% for event in best_events %}
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
-                                <img src="{% static "images" %}/{{ event.picture}}">
+                                <img src="../static/images/Michael_Fassbender_1.jpg">
                                 <div class="caption">
                                     {#                                <h4 class="pull-right">$74.99</h4>#}
                                     <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>

@@ -24,35 +24,54 @@
 
 {% if signed_in %}
 
-    <header class="header-user-dropdown header-search header-login-signup">
+    <header class="header-user-dropdown header-login-signup">
 
         <div class="header-limiter">
-            <h1><a href="#">بلیت<span>جو</span></a></h1>
-
-
+            <h1 class="farsi-font"><a href="#" class="farsi-font" style="font-size: 30px;">بلیت<span>جو</span></a></h1>
             <div class="header-user-menu">
                 <div class="user-drop">
                     <img src={% static "images/2.jpg" %} height="28" width="28" alt="User Image"/>
                 </div>
-                <div style="padding-right: 50px">
-                    <form method="get" action="#" >
-                        <input type="search" placeholder="جستجو" name="search" >
-                    </form>
-                </div>
 
                 <ul class="farsi-font">
                     {% if not admin %}
-                        <li><a href="/user">تنضیمات</a></li>
-                        <li><a href="/activity">پرداختی ها</a></li>
+                        <li><a href="/profile/">تنظیمات</a></li>
+                        <li><a href="/profile/">صفحه کاربری</a></li>
                     {% endif %}
                     {% if admin %}
-                        <li><a href="/my-admin/settings/">تنضیمات</a></li>
+                        <li><a href="/my-admin/settings/">تنظیمات</a></li>
                         <li><a href="/my-admin/">صفحه اصلی</a></li>
                     {% endif %}
-                    <li><a href="/exit" class="highlight">خروج</a></li>
+                    <li><a href="/exit/" class="highlight">خروج</a></li>
                 </ul>
             </div>
-
+            <ul id="login-list">
+                <li><a data-toggle="modal" data-target="#myM1">جستجو</a></li>
+            </ul>
+            <div class="modal fade" id="myM1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title farsi-font" style="color: #000000" id="myModalLabel">جستجو</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="/search/" method="get" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
+                                <div class="form-group">
+                                    <label style="color: #000000">جستجو</label>
+                                    <input type="search" class="form-control" name="search">
+                                    <input type="submit" class="btn btn-success" value="بگرد!">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <a class="farsi-font" style="font-size: 20px;" href="/main/">خانه</a>
+                <a class="farsi-font" style="font-size: 20px;" href="#">تماس با ما</a>
+                <a class="farsi-font" style="font-size: 20px;" href="#">درباره ما</a>
+            </nav>
         </div>
 
     </header>
@@ -60,22 +79,45 @@
 
 {% endif %}
 {% if  guest %}
-    <header class="header-search header-login-signup">
+    <header class="header-login-signup">
 
         <div class="header-limiter">
 
 
-            <h1><a href="#">بلیت<span>جو</span></a></h1>
-            <form method="get" action="#">
-                <input type="search" placeholder="جستجو" name="search">
-            </form>
+            <h1><a href="" class="farsi-font" style="font-size: 30px;">بلیت<span>جو</span></a></h1>
             <ul id="login-list">
-                <li><a href="#">ورود</a></li>
-                <li><a data-toggle="modal" data-target="#myModal">ثبت نام</a></li>
-
+                <li><a href="/sign-up/">ثبت نام</a></li>
+                <li><a data-toggle="modal" data-target="#myM">ورود</a></li>
+                <li><a data-toggle="modal" data-target="#myM1">جستجو</a></li>
             </ul>
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+
+            <div class="modal fade" id="myM1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title farsi-font" style="color: #000000" id="myModalLabel">جستجو</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="/search/" method="post" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
+                                <div class="form-group">
+                                    <label style="color: #000000">جستجو</label>
+                                    <input type="search" class="form-control" name="search">
+                                    <input type="submit" class="btn btn-success" value="بگرد!">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {#                <form method="get" action="#">#}
+            {#                    <input type="search" placeholder="جستجو" name="search">#}
+            {#                </form>#}
+            <div class="modal fade" id="myM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -83,7 +125,7 @@
                             <h4 class="modal-title farsi-font" style="color: #000000" id="myModalLabel">ورود به سامانه </h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" action="/main/" method="post" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
+                            <form role="form" action="/login/" method="post" class="form-inline farsi-font" style="font-size: 17px   ">{% csrf_token %}
                                 <div class="form-group">
                                     <label style="color: #000000">نام کاربری:</label>
                                     <input type="text" class="form-control" name="username">
@@ -108,16 +150,13 @@
                     </div>
                 </div>
             </div>
-
-
-            <nav>
-                <a href="/main/">خانه</a>
-                <a href="#">تماس با ما</a>
-                <a href="#">درباره ما</a>
-            </nav>
-
-
-
+            <div>
+                <nav>
+                    <a class="farsi-font" style="font-size: 20px;" href="/main/">خانه</a>
+                    <a class="farsi-font" style="font-size: 20px;" href="#">تماس با ما</a>
+                    <a class="farsi-font" style="font-size: 20px;" href="#">درباره ما</a>
+                </nav>
+            </div>
         </div>
 
     </header>
@@ -135,18 +174,12 @@
 
         <h3><img  alt="Mountain View" style="width:50px;height:50px;" src={% static "images/logo.jpg" %}></h3>
 
-        <p class="footer-links">
-            <a href="/main/">Home</a>
+        <p class="footer-links farsi-font">
+            <a href="/main/">خانه</a>
             ·
-            <a href="#">Blog</a>
+            <a href="#">درباره ما</a>
             ·
-            <a href="#">Pricing</a>
-            ·
-            <a href="#">About</a>
-            ·
-            <a href="#">Faq</a>
-            ·
-            <a href="#">Contact</a>
+            <a href="#">تماس با ما</a>
         </p>
 
         <p class="footer-company-name">RaVi &copy; 2015</p>
@@ -161,7 +194,7 @@
 
         <div>
             <i class="fa fa-phone"></i>
-            <p>+98 22334455</p>
+            <p style="text-align: left">+9822334455</p>
         </div>
 
         <div>
@@ -175,17 +208,8 @@
 
         <p class="footer-company-about">
             <span>درباره شرکت</span>
-            گروه فناوری روی کار خود را در پاییز سال ۱۳۹۴ آغاز کرده و هم‌اکنون مشغول انجام پروژه‌هایی‌ در زمینه طراحی سایت می‌باشد
+            گروه فناوری راوی کار خود را در پاییز سال ۱۳۹۴ آغاز کرده و هم‌اکنون مشغول انجام پروژه‌هایی‌ در زمینه طراحی سایت می‌باشد
         </p>
-
-        <div class="footer-icons">
-
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
-
-        </div>
 
     </div>
 
@@ -202,7 +226,7 @@
 
             if(e.target == this) {
                 $(this).find('input').toggle();
-                $("#login-list").css("padding-right", "250px");
+                $("#header-login-signup").css("padding-right", "250px");
             }
 
         });

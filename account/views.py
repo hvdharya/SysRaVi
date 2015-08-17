@@ -44,7 +44,7 @@ def create_account(request):
                      )
         user.user = djuser
         djuser.save()
-    user.save()
+        user.save()
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     return render(request,"main.html",{'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in})
@@ -82,14 +82,14 @@ def events(request, e_type):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     types1 = Type.objects.all()
-    subtype1 = Subtype.objects.filter(type=type2)
+    # subtype1 = Subtype.objects.filter(type=type2)
     if e_type == 'all':
         allEvents = Event.objects.all()
         e_type = 'all'
         return render(request, 'events.html', {'signed_in': is_signed_in,'admin': is_admin, 'guest': not is_signed_in, 'types':types1, 'type': e_type, 'events': allEvents})
     else:
         allEvents = Event.objects.filter(type=e_type)
-        return render(request, 'events.html', {'signed_in': is_signed_in,'admin': is_admin, 'guest': not is_signed_in,'subtypes':subtype1, 'type': e_type, 'events': allEvents})
+        return render(request, 'events.html', {'signed_in': is_signed_in,'admin': is_admin, 'guest': not is_signed_in, 'type': e_type, 'events': allEvents})
 
 
 def eventsSub(request, e_type, subtype):
@@ -116,7 +116,8 @@ def types(request):
     return render(request, 'types.html', {'types':alltypes, 'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in})
 
 
-def portal(request,userid,eventid):
+def portal(request,eventid):
+    userid = request.user.id
     price = Event.objects.filter(id=eventid).values_list('ticket_price')
     if request.method == 'POST':
         total = request.POST.get("ticket_num")

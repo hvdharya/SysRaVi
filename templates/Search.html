@@ -1,0 +1,39 @@
+﻿{% extends "base.html" %}
+{% block body %}
+    {% load staticfiles %}
+    <section style="padding-bottom: 20%;">
+        <div class="container">
+        <br />
+            <div class="row">
+                {% for event in events %}
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="../static/images/Michael_Fassbender_1.jpg">
+                            <div class="caption">
+                                {#                                <h4 class="pull-right">$74.99</h4>#}
+                                <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
+                                </h4>
+                                <p style="max-lines: 1">{{ event.desc }}</p>
+                                <h4 class="farsi-font"> تاریخ {{ event.date }}</h4>
+                            </div>
+                            {% if not admin %}
+                                {% if not guest %}
+                                    <a href="" class="pull-left btn btn-success buy">خرید</a>
+                                {% endif %}
+                            {% endif %}
+                            {% if admin %}
+                                <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>
+                                <a href="/edit-event/{{ event.id }}/" class="pull-left btn btn-info"/>ویرایش</a>
+                            {% endif %}
+                            <div class="ratings">
+                                <p>
+                                <h4 class="farsi-font">امتیاز {{ event.rate }}/۵</h4>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock body %}
