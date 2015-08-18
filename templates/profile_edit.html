@@ -10,17 +10,77 @@
         body { background-color: lavender; }
     </style>
 
-    <div class="container farsi-font">
-        <section style="padding-bottom: 50px; padding-top: 50px;">
-            <div class="row">
-                <div class="col-md-4" style="float: right;">
+    <div class="container" style="padding-top: 20px">
+        <div class="panel panel-default farsi-font" style="font-size: 18px">
+            <div class="panel-heading" style="text-align: center;"><h3 class="farsi-font">صفحه کاربری</h3></div>
+            <div class="panel-body">
+
+
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th class="text-center farsi-font">تغییر رمز عبور</th>
+                        <th class="text-center farsi-font">لیست خرید</th>
+                        <th class="text-center farsi-font">لیست علاقه مندی ها</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                        <td class="text-center farsi-font"><a href="/change-pass/" class="btn btn-info farsi-font">تغییر رمز عبور</a></td>
+                        <td class="text-center farsi-font"><button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal2">
+                            لیست خرید
+                        </button></td>
+                        <td class="text-center farsi-font"><a href="/cart/" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% if owner %}
+
+        <div class="container">
+            <div class="panel panel-default farsi-font" style="font-size: 18px">
+                <div class="panel-heading" style="text-align: center;"><h3 class="farsi-font">قابلیت ها</h3></div>
+                <div class="panel-body"style="text-align: center">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="text-center farsi-font">اضافه کردن رویداد</th>
+                            <th class="text-center farsi-font">حذف/ویرایش/مشاهده</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal113">اضافه کردن رویداد</button>
+                            </td>
+                            <td class="text-center farsi-font"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3">لیست رویدادها</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+
+
+    <div class="container">
+        <div class="panel panel-default farsi-font" style="font-size: 18px">
+            <div class="panel-heading" style="text-align: center;"><h3 class="farsi-font">مشخصات کاربری</h3></div>
+            <div class="panel-body"style="text-align: center">
+                <div class="from-group">
                     <form role="form" action="" method="POST">
                         {% csrf_token %}
-                        <img src="528675-roger-federer.jpg" class="img-rounded img-responsive" />
+                        <img src={% static "images/Michael_Fassbender_1.jpg"%} class="img-rounded" alt="Cinque Terre" width="300" height="300" />
                         <br />
                         <br />
                         <label for="event_info"id="info">ویرایش تصویر</label>
-                        <input id="file-4" name="file-4[]" type="file" multiple>
+                        <input style="margin: auto;" id="file-4" name="file-4[]" type="file" multiple>
                         <script>
                             $(document).on('ready', function() {
                                 // the file input
@@ -35,79 +95,69 @@
                                 };
                             });
                         </script>
+                        <br />
                         <label>نام کاربری</label>
-                        <input type="text" class="form-control"  name="usr" placeholder="{{username}}" disabled>
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control"  name="usr" placeholder="{{username}}" disabled>
+                        <br />
                         <label>نام</label>
-                        <input type="text" class="form-control"  name="name" placeholder="{{ name }}">
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control"  name="name" placeholder="{{ name }}">
+                        <br />
                         <label>نام خانوادگی</label>
-                        <input type="text" class="form-control"  name="lastname" placeholder="{{ lastname }}">
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control"  name="lastname" placeholder="{{ lastname }}">
+                        <br />
                         <label>پست الکترونیکی</label>
-                        <input type="email" class="form-control"  name="mail" placeholder="{{ mail }}">
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="email" class="form-control"  name="mail" placeholder="{{ mail }}">
+                        <br />
                         <label>شماره تماس</label>
-                        <input type="number" class="form-control" name="tel" placeholder="{{ tel }}">
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="number" class="form-control" name="tel" placeholder="{{ tel }}">
+                        <br />
                         <label>نشانی محل سکونت</label>
-                        <input type="text" class="form-control" name="addr" placeholder="{{ addr }}">
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control" name="addr" placeholder="{{ addr }}">
+                        <br />
                         {% if admin %}
                             <label class="farsi-font">نوع کاربر</label>
-                            <input type="text" class="form-control" name="usertype" placeholder="{{ usertype }}">
+                            <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control" name="usertype" placeholder="{{ usertype }}">
                         {% endif %}
                         <br>
                         <br>
-                        <input type="submit" class="btn btn-info" value="به روز رسانی تغییرات">
-                        <br /><br/>
-                    </form>
-                </div>
-                <div class="col-md-8" style="float: right;">
-                    <form role="form" action="" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group col-md-8">
-                            <h3 class="farsi-font">تغییر رمز عبور</h3>
-                            <br />
-                            <label>رمز عبور قبلی</label>
-                            <input type="password" name = "pass_old" class="form-control">
-                            <label>رمز عبور جدید</label>
-                            <input type="password" name="pass_new" class="form-control">
-                            <label>تائید رمز عبور جدید</label>
-                            <input type="password" name="pass_new_ver" class="form-control" />
-                            <br>
-                            <input type="submit" class="btn btn-info" value="تغییر رمز عبور">
-                            <br>
-                            <br>
-
-                                <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal2">
-                                    لیست خرید
-                                </button>
-                                <a href="/cart/" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        </div>
+                        <input style="max-width: 300px;margin: auto;text-align: center" type="submit" class="btn btn-info" value="به روز رسانی تغییرات">
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content"style="overflow-y: auto;height: 350px">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title farsi-font" id="myModalLabel">لیست خریدها</h4>
+                        <h4 class="modal-title farsi-font" id="myModalLabel">لیست رویداد ها</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="overflow-y: auto">
                         <table class="table table-bordered table-condensed">
                             <thead>
                             <tr>
-                                <th class="text-center"></th>
-                                <th class="text-center">شناسه رهگیری</th>
-                                <th class="text-center">شناسه خرید</th>
-                                <th class="text-center">رویداد</th>
+                                <th class="text-center farsi-font"></th>
+                                <th class="text-center farsi-font">نام رویداد</th>
+                                <th class="text-center farsi-font">دسته رویداد </th>
+                                <th class="text-center farsi-font">زیر دسته رویداد</th>
+                                <th class="text-center farsi-font">تاریخ شروع</th>
+                                <th class="text-center farsi-font">تاریخ اتمام</th>
+                                <th class="text-center farsi-font">رجوع</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for buy in buys %}
+                            {% for event in events %}
                                 <tr>
-                                    <td class="text-center"><span class="glyphicon glyphicon-star"></span></td>
-                                    <td class="text-center">{{buy.trace_id}}</td>
-                                    <td class="text-center">{{buy.purchase_id}}</td>
-                                    <td class="text-center"><a href="/event/{{ buy.event_id }}">{{buy.event}}</a></td>
+                                    <td class="text-center farsi-font"><span class="glyphicon glyphicon-star"></span></td>
+                                    <td class="text-center farsi-font">{{event.name}}</td>
+                                    <td class="text-center farsi-font">{{event.type}}</td>
+                                    <td class="text-center farsi-font">{{event.sub_type}}</td>
+                                    <td class="text-center farsi-font">{{event.date}}</td>
+                                    <td class="text-center farsi-font">{{event.deadline}}</td>
+                                    <td class="text-center farsi-font"><a href="/event/{{ event.id }}">{{event.name}}</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -118,6 +168,71 @@
         </div>
 
 
-    </div>
+
+
+        <div class="modal fade" id="myModal113" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content"style="overflow-y: auto;height: 350px">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title farsi-font" id="myModalLabel">دسته ها</h4>
+                    </div>
+                    <div class="modal-body" style="overflow-y: auto">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
+                            <tr>
+                                <th class="text-center farsi-font">نام دسته</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for type in types %}
+                                <tr>
+                                    <td class="text-center farsi-font"><a class="btn btn-info" style="font-size: 20px;color: #ffffff;" href="/event-add/{{ type.id }}/">{{ type.name }}</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content"style="overflow-y: auto;height: 350px">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title farsi-font" id="myModalLabel">لیست خریدها</h4>
+                    </div>
+                    <div class="modal-body"style="overflow-y: auto">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
+                            <tr>
+                                <th class="text-center farsi-font"></th>
+                                <th class="text-center farsi-font">شناسه رهگیری</th>
+                                <th class="text-center farsi-font">شناسه خرید</th>
+                                <th class="text-center farsi-font">رویداد</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for buy in buys %}
+                                <tr>
+                                    <td class="text-center farsi-font"><span class="glyphicon glyphicon-star"></span></td>
+                                    <td class="text-center farsi-font">{{buy.trace_id}}</td>
+                                    <td class="text-center farsi-font">{{buy.purchase_id}}</td>
+                                    <td class="text-center farsi-font"><a href="/event/{{ buy.event_id }}">{{buy.event}}</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock body %}

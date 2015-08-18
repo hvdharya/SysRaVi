@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{%  block body %}
+    {% load staticfiles %}
+    <link href={% static "css/admin.css"%} rel="stylesheet" />
+    <link href={% static "css/main.css"%} rel="stylesheet" />
+    <div class="container">
+        <form role="form" action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group farsi-font" style="max-width: 300px;">
+                <h3 class="farsi-font">تغییر رمز عبور</h3>
+                <br />
+                <div class="pull-right" >
+                    {% if not old %}
+                        <label style="color: red" class="farsi-font">
+                            رمز عبور صحیح نمیباشد
+                        </label>
+                    {% endif %}
+                    {% if not maching %}
+                        <label style="color: red;" class="farsi-font">
+                            عدم تطابق رمز عبور جدید
+                        </label>
+                    {% endif %}
+                {% if done %}
+                        <label style="color: green;" class="farsi-font">
+رمز عبور با موفقیت تغییر یافت
+                        </label>
+                    {% endif %}
+
+                </div>
+                <br>
+                <br>
+                <label>رمز عبور قبلی</label>
+                <input type="password" name = "pass_old" class="form-control">
+                <label>رمز عبور جدید</label>
+                <input type="password" name="pass_new" class="form-control">
+                <label>تائید رمز عبور جدید</label>
+                <input type="password" name="pass_new_ver" class="form-control" />
+                <br>
+                <input type="submit" class="btn btn-info" value="تغییر رمز عبور">
+                <a href="/profile/" class="btn btn-primary">بازگشت به صفحه کاربری</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

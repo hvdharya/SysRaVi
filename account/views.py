@@ -49,7 +49,32 @@ def create_account(request):
         user.save()
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
-    return render(request,"main.html",{'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in,'username':request.POST['name']})
+    return redirect('/main/')
+    # return render(request,"main.html",{'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in,'username':request.POST['name']})
+
+
+@login_required(redirect_field_name='/', login_url='/')
+def change_pass(request):
+    maching = True
+    old = True
+    done = False
+    if request.method == 'POST':
+        old_pass = request.POST.get('pass_old')
+        new_pass = request.POST.get('pass_new')
+        new_pass2 = request.POST.get('pass_new_ver')
+
+        user = authenticate(username=request.user.username, password=old_pass)
+        if user is not None:
+            if new_pass == new_pass2:
+                request.user.set_password(new_pass)
+                request.user.save()
+                done = True
+
+            else:
+                maching = False
+        else:
+            old = False
+    return render(request, 'change-pass.html', {'maching': maching, 'old': old, 'signed_in': True, 'done': done})
 
 
 def login_to_site(request):
