@@ -49,7 +49,7 @@ def create_account(request):
         user.save()
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
-    return render(request,"main.html",{'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in})
+    return render(request,"main.html",{'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in,'username':request.POST['name']})
 
 
 def login_to_site(request):

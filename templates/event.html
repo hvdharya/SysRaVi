@@ -28,6 +28,7 @@
                         <h4 class="farsi-font">بلیت های موجود {{ tickets }}</h4>
                     </div>
                     {% if not guest %}
+                        {% if tickets > 0 %}
                         <div class="ratings" style="text-align: right;">
                             <div style="float: left;">
                                 <a href="/addtocart/{{ event.id }}/" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>لیست علاقه مندی</a>
@@ -37,6 +38,7 @@
                                 </button>
                             </div>
                         </div>
+                        {% endif %}
                     {% endif %}
                     <br>
                     <br>

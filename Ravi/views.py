@@ -20,8 +20,7 @@ def mainPage(request):
     index = min(len(myevent),5)
     for i in range(index):
         best_events.append(myevent[i])
-
-    return render(request, 'main.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in, 'best_events': best_events,'newest_event':new_event,'types':types})
+    return render(request, 'main.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in, 'best_events': best_events,'newest_event':new_event,'types':types,'username':(request.user.first_name[2:-3])})
 
 
 def startPage(request):

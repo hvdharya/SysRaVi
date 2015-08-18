@@ -154,7 +154,7 @@ def ticketmanager(request,eventid):
 @user_passes_test(lambda u: u.is_active and u.is_superuser)
 def delete_tickets(request,ticketid):
     tick = Ticket.objects.filter(id=ticketid)
-    eventid = tick.values_list('eventid')[0][0]
+    eventid = tick.values_list('event_id')[0][0]
     current = Event.objects.filter(id=eventid).values_list('ticket_num')[0][0]
     current = current - 1;
     Ticket.objects.filter(id = ticketid).delete()
