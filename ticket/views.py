@@ -5,6 +5,7 @@ from account.models import User
 from django.db import models
 from django.contrib.auth import models
 from django.contrib.auth.decorators import user_passes_test, login_required
+import datetime
 # Create your views here.
 
 
@@ -13,7 +14,8 @@ def buy(request,userid,eventid):
     price = Event.objects.filter(id=eventid).values_list('ticket_price')[0][0]
     purchasecode = str(userid)+str(eventid)+'396'
     purchasecode = int(purchasecode)
-
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d")
     if request.method == 'POST':
         numberoftickets = request.POST.get("ticket_num")
         # print(numberoftickets)
@@ -32,7 +34,7 @@ def buy(request,userid,eventid):
         count = 1;
         for j in range(len(T)):
             if count <= int(numberoftickets):
-                myBuy = Buy(user=user,event=event,date='2015-07-08',purchase_id=purchasecode,trace_id=traceid)
+                myBuy = Buy(user=user,event=event,date=now,purchase_id=purchasecode,trace_id=traceid)
                 myBuy.save()
                 id = T[j].__str__()
                 T.filter(id=int(id)).update(free=1,buy=myBuy)
