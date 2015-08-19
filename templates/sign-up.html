@@ -10,22 +10,21 @@
             <div class="row">
                 <form role="form" action="/signed-up/" method="POST">{% csrf_token %}
                     <div class="col-xs-5 farsi-font" style="float: right;">
-                        <label for="event_info"id="info">درج تصویر</label>
-                        <input id="file-4" name="file-4[]" type="file" multiple>
-                        <script>
-                            $(document).on('ready', function() {
-                                // the file input
-                                var $el = $('#file-4'), initPlugin = function() {
-                                    $el.fileinput({
-                                        uploadUrl: '/site/file-upload-single?type=1',
-                                        uploadExtraData: {kvId: '10'},
-                                        dropZoneEnabled: false
-                                    }).off('filepreupload').on('filepreupload', function() {
-                                        alert("Initial pre-upload message!");
-                                    });
-                                };
-                            });
-                        </script>
+{#                        <label for="event_info"id="info">درج تصویر</label>#}
+{#                        <input id="file-4" name="file-4[]" type="file" multiple>#}
+{#                            $(document).on('ready', function() {#}
+{#                                // the file input#}
+{#                                var $el = $('#file-4'), initPlugin = function() {#}
+{#                                    $el.fileinput({#}
+{#                                        uploadUrl: '/site/file-upload-single?type=1',#}
+{#                                        uploadExtraData: {kvId: '10'},#}
+{#                                        dropZoneEnabled: false#}
+{#                                    }).off('filepreupload').on('filepreupload', function() {#}
+{#                                        alert("Initial pre-upload message!");#}
+{#                                    });#}
+{#                                };#}
+{#                            });#}
+{#                        </script>#}
                         <br />
                         {% if matched %}
                             <label style="color: red;" class="farsi-font">نام کاربری شما تکراری است !</label>

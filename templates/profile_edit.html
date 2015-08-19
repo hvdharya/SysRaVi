@@ -76,25 +76,25 @@
                 <div class="from-group">
                     <form role="form" action="" method="POST">
                         {% csrf_token %}
-                        <img src={% static "images/Michael_Fassbender_1.jpg"%} class="img-rounded" alt="Cinque Terre" width="300" height="300" />
-                        <br />
-                        <br />
-                        <label for="event_info"id="info">ویرایش تصویر</label>
-                        <input style="margin: auto;" id="file-4" name="file-4[]" type="file" multiple>
-                        <script>
-                            $(document).on('ready', function() {
-                                // the file input
-                                var $el = $('#file-4'), initPlugin = function() {
-                                    $el.fileinput({
-                                        uploadUrl: '/site/file-upload-single?type=1',
-                                        uploadExtraData: {kvId: '10'},
-                                        dropZoneEnabled: false
-                                    }).off('filepreupload').on('filepreupload', function() {
-                                        alert("Initial pre-upload message!");
-                                    });
-                                };
-                            });
-                        </script>
+{#                        <img src={% static "images/Michael_Fassbender_1.jpg"%} class="img-rounded" alt="Cinque Terre" width="300" height="300" />#}
+{#                        <br />#}
+{#                        <br />#}
+{#                        <label for="event_info"id="info">ویرایش تصویر</label>#}
+{#                        <input style="margin: auto;" id="file-4" name="file-4[]" type="file" multiple>#}
+{#                        <script>#}
+{#                            $(document).on('ready', function() {#}
+{#                                // the file input#}
+{#                                var $el = $('#file-4'), initPlugin = function() {#}
+{#                                    $el.fileinput({#}
+{#                                        uploadUrl: '/site/file-upload-single?type=1',#}
+{#                                        uploadExtraData: {kvId: '10'},#}
+{#                                        dropZoneEnabled: false#}
+{#                                    }).off('filepreupload').on('filepreupload', function() {#}
+{#                                        alert("Initial pre-upload message!");#}
+{#                                    });#}
+{#                                };#}
+{#                            });#}
+{#                        </script>#}
                         <br />
                         <label>نام کاربری</label>
                         <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control"  name="usr" placeholder="{{username}}" disabled>

@@ -64,10 +64,6 @@
                         <br>
                         <label for="event_info"name="info">:توضیحات</label>
                         <textarea class="form-control" rows="5" name="info"></textarea>
-
-                        <label for="event_pic" name="pic">درج تصویر</label>
-
-                        <input id="fileupload" type="file" name="files[]" multiple="">
                     </div>
                     <input type="submit" class="btn btn-success" value="ثبت">
                     <br>
@@ -75,47 +71,47 @@
             </form>
         </div>
     </section>
-    <script>
-
-        /*jslint unparam: true */
-        /*global window, $ */
-        $(function () {
-            'use strict';
-// Change this to the location of your server-side upload handler:
-            var url = 'D:\Files\CE-Term6\Systems Analysis and Design\SAD\SysRaVi\static\images';
-            $('#fileupload').fileupload({
-                url: url,
+{#    <script>#}
+{##}
+{#        /*jslint unparam: true */#}
+{#        /*global window, $ */#}
+{#        $(function () {#}
+{#            'use strict';#}
+{#// Change this to the location of your server-side upload handler:#}
+{#            var url = 'D:\Files\CE-Term6\Systems Analysis and Design\SAD\SysRaVi\static\images';#}
+{#            $('#fileupload').fileupload({#}
+{#                url: url,#}
                 {#            dataType: 'json',#}
-                done: function (e, data) {
-                    $.each(data.result.files, function (index, file) {
-                        $('<p/>').text(file.name).appendTo('#files');
-                    });
-                },
-                progressall: function (e, data) {
-                    var progress = parseInt(data.loaded / data.total * 100, 10);
-                    $('#progress .progress-bar').css(
-                            'width',
-                            progress + '%'
-                    );
-                }
-            }).prop('disabled', !$.support.fileInput)
-                    .parent().addClass($.support.fileInput ? undefined : 'disabled');
-        });
-    </script>
-
-    <script>
-        $(document).on('ready', function() {
-            // the file input
-            var $el = $('#file-4'), initPlugin = function() {
-                $el.fileinput({
-                    uploadUrl: '../static/images/',
-                    uploadExtraData: {kvId: '10'},
-                    dropZoneEnabled: false
-                }).off('filepreupload').on('filepreupload', function() {
-                    alert("Initial pre-upload message!");
-                });
-            };
-        });
-    </script>
+{#                done: function (e, data) {#}
+{#                    $.each(data.result.files, function (index, file) {#}
+{#                        $('<p/>').text(file.name).appendTo('#files');#}
+{#                    });#}
+{#                },#}
+{#                progressall: function (e, data) {#}
+{#                    var progress = parseInt(data.loaded / data.total * 100, 10);#}
+{#                    $('#progress .progress-bar').css(#}
+{#                            'width',#}
+{#                            progress + '%'#}
+{#                    );#}
+{#                }#}
+{#            }).prop('disabled', !$.support.fileInput)#}
+{#                    .parent().addClass($.support.fileInput ? undefined : 'disabled');#}
+{#        });#}
+{#    </script>#}
+{##}
+{#    <script>#}
+{#        $(document).on('ready', function() {#}
+{#            // the file input#}
+{#            var $el = $('#file-4'), initPlugin = function() {#}
+{#                $el.fileinput({#}
+{#                    uploadUrl: '../static/images/',#}
+{#                    uploadExtraData: {kvId: '10'},#}
+{#                    dropZoneEnabled: false#}
+{#                }).off('filepreupload').on('filepreupload', function() {#}
+{#                    alert("Initial pre-upload message!");#}
+{#                });#}
+{#            };#}
+{#        });#}
+{#    </script>#}
 {% endblock body %}
 </html>

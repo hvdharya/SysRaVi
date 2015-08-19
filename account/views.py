@@ -50,7 +50,7 @@ def create_account(request):
             user = User( address = request.POST['addr'],
                          phone_num = request.POST['tel'],
                          gender = request.POST['gender'],
-                         avatar = request.POST['file-4[]'],
+                         avatar = None,
                          userType = 'Normal',
                          )
             user.user = djuser

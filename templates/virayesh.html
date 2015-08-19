@@ -56,23 +56,23 @@
                         <label for="event_info"name="info">:توضیحات</label>
                         <textarea class="form-control" rows="5" name="info"></textarea>
 
-                        <label for="event_pic" name="pic">درج تصویر</label>
-
-                        <input id="file-4" name="file-4[]" type="file" multiple>
-                        <script>
-                            $(document).on('ready', function() {
-                                // the file input
-                                var $el = $('#file-4'), initPlugin = function() {
-                                    $el.fileinput({
-                                        uploadUrl: '/site/file-upload-single?type=1',
-                                        uploadExtraData: {kvId: '10'},
-                                        dropZoneEnabled: false
-                                    }).off('filepreupload').on('filepreupload', function() {
-                                        alert("Initial pre-upload message!");
-                                    });
-                                };
-                            });
-                        </script>
+{#                        <label for="event_pic" name="pic">درج تصویر</label>#}
+{##}
+{#                        <input id="file-4" name="file-4[]" type="file" multiple>#}
+{#                        <script>#}
+{#                            $(document).on('ready', function() {#}
+{#                                // the file input#}
+{#                                var $el = $('#file-4'), initPlugin = function() {#}
+{#                                    $el.fileinput({#}
+{#                                        uploadUrl: '/site/file-upload-single?type=1',#}
+{#                                        uploadExtraData: {kvId: '10'},#}
+{#                                        dropZoneEnabled: false#}
+{#                                    }).off('filepreupload').on('filepreupload', function() {#}
+{#                                        alert("Initial pre-upload message!");#}
+{#                                    });#}
+{#                                };#}
+{#                            });#}
+{#                        </script>#}
                     </div>
                     <input type="submit" class="btn btn-success" value="ثبت">
                     <br>

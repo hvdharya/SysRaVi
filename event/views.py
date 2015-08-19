@@ -214,33 +214,40 @@ def create_event(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     djangouser = models.User.objects.filter(username=request.user.username)
+    type1 = Type.objects.filter(id=id)
+    typename=type1.values_list('name')[0][0]
+    subs = Subtype.objects.filter(type=type1)
     if  not is_admin:
         myuser = User.objects.filter(user=djangouser)[0]
     else:
         myuser=None
-    type1 = Type.objects.filter(id=id)
-    typename=type1.values_list('name')[0][0]
-    subs = Subtype.objects.filter(type=type1)
-    if request.method == 'POST':
-        name = request.POST['event_name']
-        picture = request.POST['files[]']
-        ticket_num = request.POST['event_ticket']
-        desc = request.POST['info']
-        date = request.POST['datepicker']
-        deadline = request.POST['datepicker1']
-        place = request.POST['event_place']
-        type = type1.values_list('name')[0][0]
-        sub_type = request.POST['genre']
-        address = request.POST['event_addr']
-        ticket_price = request.POST['event_price']
-        duration = '2.0'
-        event = Event(name=name,picture=picture,ticket_num=ticket_num,desc=desc,date=date,deadline=deadline,place=place,type=type,sub_type=sub_type,address=address,ticket_price=ticket_price,duration=duration, rate=0,owner=myuser,available_tickets=ticket_num)
-        event.save()
-        for i in range(int(ticket_num)):
-            ticket = Ticket(price=ticket_price,type='Normal',seat_num=i,event=event,buy=None,free=0)
-            ticket.save();
+    if not is_admin:
+        if myuser.userType=='owner':
+            if request.method == 'POST':
+                name = request.POST['event_name']
+                # picture = request.POST['files[]']
+                ticket_num = request.POST['event_ticket']
+                desc = request.POST['info']
+                date = request.POST['datepicker']
+                deadline = request.POST['datepicker1']
+                place = request.POST['event_place']
+                type = type1.values_list('name')[0][0]
+                sub_type = request.POST['genre']
+                address = request.POST['event_addr']
+                ticket_price = request.POST['event_price']
+                duration = '2.0'
+                event = Event(name=name,picture=None,ticket_num=ticket_num,desc=desc,date=date,deadline=deadline,place=place,type=type,sub_type=sub_type,address=address,ticket_price=ticket_price,duration=duration, rate=0,owner=myuser,available_tickets=ticket_num)
+                event.save()
+                for i in range(int(ticket_num)):
+                    ticket = Ticket(price=ticket_price,type='Normal',seat_num=i,event=event,buy=None,free=0)
+                    ticket.save();
 
-    return render(request, 'event-adder.html',{'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'id':id,'type':typename,'subtypes':subs})
+            return render(request, 'event-adder.html',{'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'id':id,'type':typename,'subtypes':subs})
+        else:
+            return redirect('/main/')
+    else:
+        return render(request, 'event-adder.html',{'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'id':id,'type':typename,'subtypes':subs})
+
 
 
 @user_passes_test(lambda u: u.is_active and u.is_superuser)
@@ -264,8 +271,8 @@ def edit_event(request, event_id):
             Event.objects.filter(id=event_id).update(name=request.POST.get('event_name'))
         if not request.POST.get('event_place') == "":
             Event.objects.filter(id=event_id).update(place=request.POST.get('event_place'))
-        if not request.POST.get('file-4[]') == "":
-            Event.objects.filter(id=event_id).update(picture=request.POST.get('file-4[]'))
+        # if not request.POST.get('file-4[]') == "":
+        #     Event.objects.filter(id=event_id).update(picture=request.POST.get('file-4[]'))
         if not request.POST.get('event_ticket') == "":
             Event.objects.filter(id=event_id).update(ticket_num=request.POST.get('event_ticket'))
         if not request.POST.get('event_price') == "":

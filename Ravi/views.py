@@ -70,7 +70,7 @@ def adminSetting(request):
     gender = myUser.values_list('gender',flat=True)
     tel = myUser.values_list('phone_num',flat=True)
     mail = djangoUser.values_list('email',flat=True)
-    pic = myUser.values_list('avatar',flat=True)
+    # pic = myUser.values_list('avatar',flat=True)
     name = djangoUser.values_list('first_name',flat=True)
     lastname = djangoUser.values_list('last_name',flat=True)
 
@@ -79,8 +79,8 @@ def adminSetting(request):
             User.objects.filter(user=djangoUser).update(phone_num=request.POST.get('tel'))
         if not request.POST.get('addr') == "":
             User.objects.filter(user=djangoUser).update(address=request.POST.get('addr'))
-        if not request.POST.get('file-4[]') == "":
-            User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
+        # if not request.POST.get('file-4[]') == "":
+        #     User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
         if not request.POST.get('name') == "":
             models.User.objects.filter(username=superUser).update(first_name=request.POST.get('name'))
         if not request.POST.get('lastname') == "":
@@ -90,7 +90,7 @@ def adminSetting(request):
 
 
     return render(request, 'admin.html',
-                  {'picture': pic, 'username':superUser, 'lastname':lastname,
+                  { 'username':superUser, 'lastname':lastname,
                    'tel':tel, 'name':name, 'addr':address, 'mail':mail[0],
                    'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in}
                   )
@@ -125,7 +125,7 @@ def profile(request):
     gender = myUser.values_list('gender',flat=True)
     tel = myUser.values_list('phone_num',flat=True)
     mail = djangoUser.values_list('email',flat=True)
-    pic = myUser.values_list('avatar',flat=True)
+    # pic = myUser.values_list('avatar',flat=True)
     name = djangoUser.values_list('first_name',flat=True)
     lastname = djangoUser.values_list('last_name',flat=True)
     usertype = myUser.values_list('userType')
@@ -134,8 +134,8 @@ def profile(request):
             User.objects.filter(user=djangoUser).update(phone_num=request.POST.get('tel'))
         if not request.POST.get('addr') == "":
             User.objects.filter(user=djangoUser).update(address=request.POST.get('addr'))
-        if not request.POST.get('file-4[]') == "":
-            User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
+        # if not request.POST.get('file-4[]') == "":
+        #     User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
         if not request.POST.get('name') == "":
             models.User.objects.filter(username=usern).update(first_name=request.POST.get('name'))
         if not request.POST.get('lastname') == "":
@@ -145,7 +145,7 @@ def profile(request):
         if not request.POST.get('usertype') == "":
             User.objects.filter(user=djangoUser).update(userType=request.POST.get('usertype'))
     return render(request, 'profile_edit.html',
-                  {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0][2:-3],
+                  {'buys':buys, 'username':usern[0], 'lastname':lastname[0][2:-3],
                    'tel':tel[0], 'name':name[0][2:-3], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
                    'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0],'owner':owner,'types':types,'events':events}
                   )
@@ -178,7 +178,7 @@ def edit_see(request,id):
     gender = myUser.values_list('gender',flat=True)
     tel = myUser.values_list('phone_num',flat=True)
     mail = djangoUser.values_list('email',flat=True)
-    pic = myUser.values_list('avatar',flat=True)
+    # pic = myUser.values_list('avatar',flat=True)
     name = djangoUser.values_list('first_name',flat=True)
     lastname = djangoUser.values_list('last_name',flat=True)
     usertype = myUser.values_list('userType')
@@ -190,8 +190,8 @@ def edit_see(request,id):
             User.objects.filter(user=djangoUser).update(phone_num=request.POST.get('tel'))
         if not request.POST.get('addr') == "":
             User.objects.filter(user=djangoUser).update(address=request.POST.get('addr'))
-        if not request.POST.get('file-4[]') == "":
-            User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
+        # if not request.POST.get('file-4[]') == "":
+        #     User.objects.filter(user=djangoUser).update(avatar=request.POST.get('file-4[]'))
         if not request.POST.get('name') == "":
             models.User.objects.filter(username=usern).update(first_name=request.POST.get('name'))
         if not request.POST.get('lastname') == "":
@@ -206,7 +206,7 @@ def edit_see(request,id):
             else:
                 owner = False
     return render(request, 'profile_edit.html',
-                  {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0][2:-3],
+                  {'buys':buys, 'username':usern[0], 'lastname':lastname[0][2:-3],
                    'tel':tel[0], 'name':name[0][2:-3], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
                    'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0],'owner':owner,'events':events}
                   )
