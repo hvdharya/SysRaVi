@@ -24,7 +24,12 @@
                         <h3 class="farsi-font">{{ event.name }}</h3>
                         <div><h4 class="farsi-font">{{ event.desc }}</h4></div>
                         <h4 class="farsi-font">date: {{ event.date }}</h4>
-                        <h4 class="farsi-font">بلیت های موجود {{ tickets }}</h4>
+                        {% if tickets > 0 %}
+                            <h4 class="farsi-font" style="color: green">بلیت های موجود {{ tickets }}</h4>
+                        {% endif %}
+                        {% if tickets == 0 %}
+                            <h4 class="farsi-font" style="color: red">بلیت ها به اتمام رسید!</h4>
+                        {% endif %}
                     </div>
                     {% if not guest %}
                         {% if tickets > 0 %}

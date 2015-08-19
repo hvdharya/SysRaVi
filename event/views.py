@@ -182,7 +182,7 @@ def subtypes (request, id):
     now = now.strftime("%Y-%m-%d")
     typename = types.values_list('name')[0][0]
     subs1 = Subtype.objects.filter(type=types)
-    allEvents = Event.objects.filter(deadline__lte=now,type=types.values_list('name')[0][0])
+    allEvents = Event.objects.filter(deadline__gte=now,type=types.values_list('name')[0][0])
     # allEvents = allEvents.filter(sub_type=sub)
     return render(request, 'subtypes.html', {'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'type': typename, 'subtypes': subs1,'events':allEvents})
 
@@ -193,7 +193,7 @@ def subtype (request , id):
     sub1 = Subtype.objects.filter(id=id)
     now = datetime.datetime.now()
     now = now.strftime("%Y-%m-%d")
-    allEvents = Event.objects.filter(deadline__lte=now,sub_type=sub1.values_list('name')[0][0])
+    allEvents = Event.objects.filter(deadline__gte=now,sub_type=sub1.values_list('name')[0][0])
     mytype1 = sub1.values_list('type')
     mytype = Type.objects.filter(id=mytype1)
     mytype = mytype[0]
