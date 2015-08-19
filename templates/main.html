@@ -38,7 +38,8 @@
                                     <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
                                     </h4>
                                     <p style="max-lines: 1" class="farsi-font">{{ event.desc }}</p>
-                                    <h4 class="farsi-font">تاریخ {{ event.date }}</h4>
+                                    <h4 class="farsi-font" style="color: green">شروع {{ event.date }}</h4>
+                                    <h4 class="farsi-font" style="color: red">اتمام {{ event.deadline }}</h4>
                                 </div>
                                 {% if not admin %}
                                     {% if not guest %}
@@ -74,7 +75,8 @@
                                     <h4 class="farsi-font"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
                                     </h4>
                                     <p style="max-lines: 1">{{ event.desc }}</p>
-                                    <h4 class="farsi-font"> تاریخ {{ event.date }}</h4>
+                                    <h4 class="farsi-font" style="color: green">شروع {{ event.date }}</h4>
+                                    <h4 class="farsi-font" style="color: red">اتمام {{ event.deadline }}</h4>
                                 </div>
                                 {% if not admin %}
                                     {% if not guest %}

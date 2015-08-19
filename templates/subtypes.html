@@ -25,12 +25,14 @@
 
                         <div class="col-sm-4 col-md-4">
                             <div class="thumbnail" >
-                                <img src="http://placehold.it/320x150" alt="">
+                                <img src="/static/images/logo.jpg" class="img-rounded img-responsive" height="320" width="150">
                                 <div class="caption">
 
                                     <h4 class="farsi-font" style="text-align: center"><a href="/event/{{ event.id }}" style="max-width: inherit">{{ event.name }}</a>
                                     </h4>
                                     <p style="text-align: justify">{{ event.desc}}</p>
+                                    <h4 class="farsi-font" style="color: green">شروع {{ event.date }}</h4>
+                                    <h4 class="farsi-font" style="color: red">اتمام {{ event.deadline }}</h4>
                                 </div>
                                 <div class="ratings">
 
@@ -43,7 +45,9 @@
                                         {% endfor %}
                                         <span class="price"> {{ event.price }}</span>
                                         {% if not admin %}
-                                            <a href="/event/{{ event.id }}" class="pull-left btn btn-success buy">خرید</a>
+                                            {% if signed_in %}
+                                                <a href="/event/{{ event.id }}" class="pull-left btn btn-success buy">خرید</a>
+                                            {% endif %}
                                         {% endif %}
                                         {% if admin %}
                                             <a href="/events-delete/{{ event.id }}/" class="pull-left btn btn-danger"/>حذف</a>

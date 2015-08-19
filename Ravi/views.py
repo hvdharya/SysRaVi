@@ -4,13 +4,19 @@ from django.contrib.auth import models
 from event.models import Event,Type
 from ticket.models import Buy, Ticket
 from django.contrib.auth.decorators import user_passes_test, login_required
+import datetime
 
 
 def mainPage(request):
+
+
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d")
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
-    myevent = Event.objects.order_by('-rate')
-    newest = Event.objects.order_by('-date')
+    events = Event.objects.filter(deadline__gte=now)
+    myevent = events.order_by('-rate')
+    newest = events.order_by('-date')
     types = Type.objects.all()
     new_event = []
     best_events = []

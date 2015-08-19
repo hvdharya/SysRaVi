@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {%block body%}
     {% load staticfiles %}
-    <link href={%  static "css/shop-item.css"%} rel="stylesheet">
     <link href={%  static "css/main.css"%} rel="stylesheet">
     <div class="container farsi-font">
         <style>
@@ -29,15 +28,15 @@
                     </div>
                     {% if not guest %}
                         {% if tickets > 0 %}
-                        <div class="ratings" style="text-align: right;">
-                            <div style="float: left;">
-                                <a href="/addtocart/{{ event.id }}/" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>لیست علاقه مندی</a>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
-                                    نهایی کردن خرید
+                            <div class="ratings" style="text-align: right;">
+                                <div style="float: left;">
+                                    <a href="/addtocart/{{ event.id }}/" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>لیست علاقه مندی</a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+                                        نهایی کردن خرید
 
-                                </button>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
                         {% endif %}
                     {% endif %}
                     <br>
@@ -141,5 +140,3 @@
         </div>
     </div>
 {% endblock body %}
-
-

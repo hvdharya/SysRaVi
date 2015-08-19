@@ -27,6 +27,10 @@
                             });
                         </script>
                         <br />
+                        {% if matched %}
+                            <label style="color: red;" class="farsi-font">نام کاربری شما تکراری است !</label>
+                        {% endif %}
+                        <br>
                         <label>نام کاربری</label>
                         <input type="text" class="form-control" name="usr">
                         <label>زمر عبور</label>

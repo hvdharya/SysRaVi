@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from account.models import User
 from feedback.models import Feedback
 from django.contrib.auth.decorators import user_passes_test, login_required
+import datetime
 
 
 # Create your views here.
@@ -177,9 +178,11 @@ def subtypes (request, id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     types = Type.objects.filter(id=id)
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d")
     typename = types.values_list('name')[0][0]
     subs1 = Subtype.objects.filter(type=types)
-    allEvents = Event.objects.filter(type=types.values_list('name')[0][0])
+    allEvents = Event.objects.filter(deadline__lte=now,type=types.values_list('name')[0][0])
     # allEvents = allEvents.filter(sub_type=sub)
     return render(request, 'subtypes.html', {'guest': not is_signed_in, 'signed_in': is_signed_in, 'admin': is_admin, 'type': typename, 'subtypes': subs1,'events':allEvents})
 
@@ -188,7 +191,9 @@ def subtype (request , id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     sub1 = Subtype.objects.filter(id=id)
-    allEvents = Event.objects.filter(sub_type=sub1.values_list('name')[0][0])
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d")
+    allEvents = Event.objects.filter(deadline__lte=now,sub_type=sub1.values_list('name')[0][0])
     mytype1 = sub1.values_list('type')
     mytype = Type.objects.filter(id=mytype1)
     mytype = mytype[0]
@@ -218,7 +223,7 @@ def create_event(request,id):
     subs = Subtype.objects.filter(type=type1)
     if request.method == 'POST':
         name = request.POST['event_name']
-        picture = request.POST['file-4[]']
+        picture = request.POST['files[]']
         ticket_num = request.POST['event_ticket']
         desc = request.POST['info']
         date = request.POST['datepicker']

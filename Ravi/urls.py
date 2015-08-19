@@ -4,7 +4,11 @@ from event.views import eventDetailedView, eventsType, create_event,edit_event,d
 from account.views import create_account,login_to_site, eventsSub, log_out,change_pass
 from ticket.views import show_cart, delete_cart
 from Ravi import views
+from Ravi import settings
 from django.views.generic import RedirectView
+from django.conf.urls import patterns, include, url,static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = patterns('',
 
@@ -36,7 +40,6 @@ urlpatterns = patterns('',
     url(r'^event-add/([0-9]+)', create_event),
     url(r'^search/', views.search_event),
     url(r'^change-pass/', change_pass),
-
 )
 
 

@@ -10,7 +10,7 @@ class User(models.Model):
     address = models.CharField(max_length=100,null=True)
     phone_num = models.CharField(max_length=12,null=True)
     gender = models.CharField(max_length=5)
-    avatar = models.ImageField(null=True,default='528675-roger-federer.jpg')
+    avatar = models.ImageField(null=True)
     userType = models.CharField(max_length=100,null=True)
 
     def __str__(self):

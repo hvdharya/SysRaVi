@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 from event.models import Event,Type,Subtype
 from django.contrib.auth.decorators import login_required, user_passes_test
+from Ravi.views import signup
 # Create your views here.
 
 
@@ -31,25 +32,33 @@ def delUsers(request,userid):
 def create_account(request):
     c = {}
     c.update(csrf(request))
-    if request.method == 'POST':
-        djuser = models.User.objects.create_user(username = request.POST['usr'],
-                                                 email = request.POST['mail'],
-                                                 password= request.POST['pass'],
-                                                 )
-        djuser.first_name = request.POST['name'],
-        djuser.last_name = request.POST['lastname'],
-        user = User( address = request.POST['addr'],
-                     phone_num = request.POST['tel'],
-                     gender = request.POST['gender'],
-                     avatar = request.POST['file-4[]'],
-                     userType = 'Normal',
-                     )
-        user.user = djuser
-        djuser.save()
-        user.save()
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
-    return redirect('/main/')
+    matched = False
+    if request.method == 'POST':
+        match = models.User.objects.filter(username=request.POST['usr'])
+        if len(match) > 0:
+            matched = True
+            return render(request,'sign-up.html',{'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in,'matched':matched})
+        else:
+            djuser = models.User.objects.create_user(username = request.POST['usr'],
+                                                     email = request.POST['mail'],
+                                                     password= request.POST['pass'],
+                                                     )
+            djuser.first_name = request.POST['name'],
+            djuser.last_name = request.POST['lastname'],
+            user = User( address = request.POST['addr'],
+                         phone_num = request.POST['tel'],
+                         gender = request.POST['gender'],
+                         avatar = request.POST['file-4[]'],
+                         userType = 'Normal',
+                         )
+            user.user = djuser
+            djuser.save()
+            user.save()
+        is_signed_in = request.user.is_authenticated()
+        is_admin = request.user.is_superuser
+        return redirect('/main/')
     # return render(request,"main.html",{'signed_in': is_signed_in, 'admin': is_admin, 'guest': not is_signed_in,'username':request.POST['name']})
 
 

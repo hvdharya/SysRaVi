@@ -16,7 +16,7 @@ def buy(request,userid,eventid):
 
     if request.method == 'POST':
         numberoftickets = request.POST.get("ticket_num")
-        print(numberoftickets)
+        # print(numberoftickets)
         traceid = str(userid)+str(eventid)+str(numberoftickets)+str(128)+str(price)
         traceid = int(traceid)
         myUser=models.User.objects.filter(id=userid)
