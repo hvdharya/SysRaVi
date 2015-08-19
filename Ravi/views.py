@@ -39,7 +39,7 @@ def startPage(request):
 
 
 @login_required(redirect_field_name='/', login_url='/')
-def user(request):
+def user(request,id):
     is_signed_in = request.user.is_authenticated()
     is_admin = request.user.is_superuser
     return render(request, 'userProfile.html', {'signed_in': is_signed_in,'admin':is_admin, 'guest': not is_signed_in})
@@ -166,12 +166,14 @@ def edit_see(request,id):
     myUser = User.objects.filter(user = djangoUser)
     buys = Buy.objects.filter(user=myUser)
     buyid = buys.values_list('id')
+    events=None
     if len(buys) != 0:
         for i in range(len(buyid)):
             event=(Ticket.objects.filter(buy=buys[i])).values_list('event')
         for i in range(len(event)):
             names = event[i]
     types1 = Type.objects.all()
+    owner=False;
     address = myUser.values_list('address',flat=True)
     gender = myUser.values_list('gender',flat=True)
     tel = myUser.values_list('phone_num',flat=True)
@@ -180,6 +182,9 @@ def edit_see(request,id):
     name = djangoUser.values_list('first_name',flat=True)
     lastname = djangoUser.values_list('last_name',flat=True)
     usertype = myUser.values_list('userType')
+    if usertype[0][0]=='owner':
+        owner = True
+        events = Event.objects.filter(owner=myUser)
     if request.method == 'POST':
         if not request.POST.get('tel') == "":
             User.objects.filter(user=djangoUser).update(phone_num=request.POST.get('tel'))
@@ -195,10 +200,15 @@ def edit_see(request,id):
             models.User.objects.filter(username=usern).update(email=request.POST.get('mail'))
         if not request.POST.get('usertype') == "":
             User.objects.filter(user=djangoUser).update(userType=request.POST.get('usertype'))
+            if usertype[0][0]=='owner':
+                owner = True
+                events = Event.objects.filter(owner=myUser)
+            else:
+                owner = False
     return render(request, 'profile_edit.html',
-                  {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0],
-                   'tel':tel[0], 'name':name[0], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
-                   'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0]}
+                  {'buys':buys,'img_address': pic[0], 'username':usern[0], 'lastname':lastname[0][2:-3],
+                   'tel':tel[0], 'name':name[0][2:-3], 'addr':address[0], 'mail':mail[0],'signed_in': is_signed_in,
+                   'admin':is_admin, 'guest': not is_signed_in,'usertype':usertype[0][0],'owner':owner,'events':events}
                   )
 
 

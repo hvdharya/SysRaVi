@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-
 {%  block body %}
     {% load staticfiles %}
     <link href={% static "css/admin.css"%} rel="stylesheet" />
     <link href={% static "css/main.css"%} rel="stylesheet" />
-    <div class="container">
+    <style>
+        body { background-color: lavender; }
+    </style>
+    <div class="container"style="padding-bottom: 10%">
         <form role="form" action="" method="POST">
             {% csrf_token %}
             <div class="form-group farsi-font" style="max-width: 300px;">
@@ -21,9 +23,9 @@
                             عدم تطابق رمز عبور جدید
                         </label>
                     {% endif %}
-                {% if done %}
+                    {% if done %}
                         <label style="color: green;" class="farsi-font">
-رمز عبور با موفقیت تغییر یافت
+                            رمز عبور با موفقیت تغییر یافت
                         </label>
                     {% endif %}
 

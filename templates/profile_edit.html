@@ -116,7 +116,12 @@
                         <br />
                         {% if admin %}
                             <label class="farsi-font">نوع کاربر</label>
-                            <input style="max-width: 300px;margin: auto;text-align: center" type="text" class="form-control" name="usertype" placeholder="{{ usertype }}">
+                            <select class="btn btn-primary dropdown" name="usertype">
+                                <option disabled selected>{{ usertype }}</option>
+                                <option disabled>--------</option>
+                                <option value="Normal">معمولی</option>
+                                <option value="owner">رویدادگذار</option>
+                            </select>
                         {% endif %}
                         <br>
                         <br>
